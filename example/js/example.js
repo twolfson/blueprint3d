@@ -141,6 +141,7 @@ $(document).ready(function() {
     widget: false
   }
   var blueprint3d = new BP3D.Blueprint3d(opts);
+  window.blueprint3d = blueprint3d;
 
   var viewerFloorplanner = new ViewerFloorplanner(blueprint3d);
   var sideMenu = new SideMenu(blueprint3d, viewerFloorplanner);
