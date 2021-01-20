@@ -113,6 +113,7 @@ module BP3D.Model {
 
     /** Remove callback. Fires the delete callbacks. */
     public remove() {
+      console.log('reeeemooooove', this.id);
       this.deleted_callbacks.fire(this);
     }
 
