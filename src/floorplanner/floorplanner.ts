@@ -207,11 +207,12 @@ module BP3D.Floorplanner {
 
       // panning
       if (this.mouseDown && !this.activeCorner && !this.activeWall) {
-        this.originX += (this.lastX - this.rawMouseX);
-        this.originY += (this.lastY - this.rawMouseY);
-        this.lastX = this.rawMouseX;
-        this.lastY = this.rawMouseY;
-        this.view.draw();
+        // Disabled for fixed viewports
+        // this.originX += (this.lastX - this.rawMouseX);
+        // this.originY += (this.lastY - this.rawMouseY);
+        // this.lastX = this.rawMouseX;
+        // this.lastY = this.rawMouseY;
+        // this.view.draw();
       }
 
       // dragging
