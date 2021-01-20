@@ -2,6 +2,8 @@
 
 This repository includes an example application built using blueprint3d:
 
+TODO: Add PR for proper corner deletion
+
 ### http://furnishup.github.io/blueprint3d/example/
 
 ## What is this?
