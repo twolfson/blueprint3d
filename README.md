@@ -9,6 +9,7 @@ Adjustments:
 - [x] Updated example page to demonstrate floating standalone
 - [ ] Fix draw click to count, even if there's a little drag
 - [ ] Remove `items` and `scene` logic (no longer needed but lots of one-offs)
+- [ ] Remove `jQuery` - Used for event listeners, `classList` manipulation, and offset handling
 
 ---
 
