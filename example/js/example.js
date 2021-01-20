@@ -518,12 +518,12 @@ $(document).ready(function() {
   }
   var blueprint3d = new BP3D.Blueprint3d(opts);
 
-  var modalEffects = new ModalEffects(blueprint3d);
+  // var modalEffects = new ModalEffects(blueprint3d);
   var viewerFloorplanner = new ViewerFloorplanner(blueprint3d);
-  var contextMenu = new ContextMenu(blueprint3d);
-  var sideMenu = new SideMenu(blueprint3d, viewerFloorplanner, modalEffects);
-  var textureSelector = new TextureSelector(blueprint3d, sideMenu);        
-  var cameraButtons = new CameraButtons(blueprint3d);
+  // var contextMenu = new ContextMenu(blueprint3d);
+  // var sideMenu = new SideMenu(blueprint3d, viewerFloorplanner, modalEffects);
+  // var textureSelector = new TextureSelector(blueprint3d, sideMenu);        
+  // var cameraButtons = new CameraButtons(blueprint3d);
   mainControls(blueprint3d);
 
   // This serialization format needs work
