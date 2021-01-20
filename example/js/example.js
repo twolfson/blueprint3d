@@ -11,7 +11,7 @@ var ViewerFloorplanner = function(blueprint3d) {
   var remove = '#delete';
   var draw = '#draw';
 
-  var activeStlye = 'btn-primary disabled';
+  var activeClasses = ['btn-primary', 'disabled'];
 
   this.floorplanner = blueprint3d.floorplanner;
 
@@ -19,39 +19,40 @@ var ViewerFloorplanner = function(blueprint3d) {
 
   function init() {
 
-    $( window ).resize( scope.handleWindowResize );
+    window.addEventListener('resize', scope.handleWindowResize);
     scope.handleWindowResize();
 
     // mode buttons
+    let qS = document.querySelector.bind(document);
     scope.floorplanner.modeResetCallbacks.add(function(mode) {
-      $(draw).removeClass(activeStlye);
-      $(remove).removeClass(activeStlye);
-      $(move).removeClass(activeStlye);
+      qS(draw).classList.remove(...activeClasses);
+      qS(remove).classList.remove(...activeClasses);
+      qS(move).classList.remove(...activeClasses);
       if (mode == BP3D.Floorplanner.floorplannerModes.MOVE) {
-          $(move).addClass(activeStlye);
+          qS(move).classList.add(...activeClasses);
       } else if (mode == BP3D.Floorplanner.floorplannerModes.DRAW) {
-          $(draw).addClass(activeStlye);
+          qS(draw).classList.add(...activeClasses);
       } else if (mode == BP3D.Floorplanner.floorplannerModes.DELETE) {
-          $(remove).addClass(activeStlye);
+          qS(remove).classList.add(...activeClasses);
       }
 
       if (mode == BP3D.Floorplanner.floorplannerModes.DRAW) {
-        $("#draw-walls-hint").show();
+        qS("#draw-walls-hint").style.display = 'block';
         scope.handleWindowResize();
       } else {
-        $("#draw-walls-hint").hide();
+        qS("#draw-walls-hint").style.display = 'none';
       }
     });
 
-    $(move).click(function(){
+    qS(move).addEventListener('click', function(){
       scope.floorplanner.setMode(BP3D.Floorplanner.floorplannerModes.MOVE);
     });
 
-    $(draw).click(function(){
+    qS(draw).addEventListener('click', function(){
       scope.floorplanner.setMode(BP3D.Floorplanner.floorplannerModes.DRAW);
     });
 
-    $(remove).click(function(){
+    qS(remove).addEventListener('click', function(){
       scope.floorplanner.setMode(BP3D.Floorplanner.floorplannerModes.DELETE);
     });
   }
@@ -81,7 +82,7 @@ window.exportDesign = function () {
  * Initialize!
  */
 
-$(document).ready(function() {
+document.addEventListener('DOMContentLoaded', function() {
 
   // main setup
   var opts = {
