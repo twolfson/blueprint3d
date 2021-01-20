@@ -134,7 +134,7 @@ module BP3D.Model {
     private move(newX: number, newY: number) {
       this.x = newX;
       this.y = newY;
-      // this.mergeWithIntersected();
+      // this.mergeWithIntersected(); -- Old behavior: Would merge while still dragging
       this.moved_callbacks.fire(this.x, this.y);
 
       this.wallStarts.forEach((wall) => {
@@ -288,6 +288,7 @@ module BP3D.Model {
       for (var i = 0; i < this.floorplan.getCorners().length; i++) {
         var corner = this.floorplan.getCorners()[i];
         if (this.distanceFromCorner(corner) < cornerTolerance && corner != this) {
+          console.log('combo', this.id, corner.id);
           this.combineWithCorner(corner);
           return true;
         }
