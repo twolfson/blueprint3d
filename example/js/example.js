@@ -61,7 +61,8 @@ var ViewerFloorplanner = function(blueprint3d) {
   }
 
   this.handleWindowResize = function() {
-    $(canvasWrapper).height(window.innerHeight - $(canvasWrapper).offset().top);
+    // Disabled: Resizing to full window height
+    // $(canvasWrapper).height(window.innerHeight - $(canvasWrapper).offset().top);
     scope.floorplanner.resizeView();
   };
 
@@ -94,11 +95,6 @@ $(document).ready(function() {
   window.blueprint3d = blueprint3d;
 
   var viewerFloorplanner = new ViewerFloorplanner(blueprint3d);
-
-  // show and hide the right divs
-  $("#floorplanner").show()
-
-  // custom actions
   viewerFloorplanner.updateFloorplanView();
   viewerFloorplanner.handleWindowResize();
   blueprint3d.model.floorplan.update();

@@ -1,27 +1,14 @@
 /*
- * General Formatting
- */
-
-html {
-  overflow: hidden;
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  height: 100%;
-}
-
-div {
-  margin: 0;
-  padding: 0;
-}
-
-/*
  * Design
  */
+#floorplanner {
+  position: relative;
+  height: 300px;
+  width: 960px;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+
 #floorplanner-controls {
   position: absolute;
   left: 0;
