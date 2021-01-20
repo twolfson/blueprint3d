@@ -1,8 +1,17 @@
+Adjustments:
+
+- [x] Removed a lot of example UI
+- [x] Disabled panning
+- [x] Updated corners/walls to only merge on drag stop
+- [x] Fixed corner removal behavior
+- [ ] Fix double wall we create when collapsing into an "L" shape
+  - Omitted for now as it's not a common case and non-breaking
+
+---
+
 ## See it
 
 This repository includes an example application built using blueprint3d:
-
-TODO: Add PR for proper corner deletion
 
 ### http://furnishup.github.io/blueprint3d/example/
 
