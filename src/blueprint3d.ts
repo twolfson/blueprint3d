@@ -1,6 +1,5 @@
 /// <reference path="model/model.ts" />
 /// <reference path="floorplanner/floorplanner.ts" />
-/// <reference path="three/main.ts" />
 
 module BP3D {
   /** Startup options. */
@@ -35,14 +34,7 @@ module BP3D {
      */
     constructor(options: Options) {
       this.model = new Model.Model(options.textureDir);
-      this.three = new Three.Main(this.model, options.threeElement, options.threeCanvasElement, {});
-
-      if (!options.widget) {
-        this.floorplanner = new Floorplanner.Floorplanner(options.floorplannerElement, this.model.floorplan);
-      }
-      else {
-        this.three.getController().enabled = false;
-      }
+      this.floorplanner = new Floorplanner.Floorplanner(options.floorplannerElement, this.model.floorplan);
     }
   }
 }
