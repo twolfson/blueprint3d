@@ -11,52 +11,31 @@
     <script src="js/blueprint3d.js"></script>
 
     <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.js"></script>
     
-    <script src="js/items.js"></script>
     <script src="js/example.js"></script>
   </head>
 
   <body>
+    <div id="floorplanner">
+      <canvas id="floorplanner-canvas"></canvas>
+      <div id="floorplanner-controls">
 
-    <div class="container-fluid">
-      <div class="row main-row">
-        <div class="col-xs-12 main">
-          <!-- 2D Floorplanner -->
-          <div id="floorplanner">
-            <canvas id="floorplanner-canvas"></canvas>
-            <div id="floorplanner-controls">
-
-              <button id="move" class="btn btn-sm btn-default">
-                <span class="glyphicon glyphicon-move"></span>
-                Move Walls
-              </button>
-              <button id="draw" class="btn btn-sm btn-default">
-                <span class="glyphicon glyphicon-pencil"></span>
-                Draw Walls
-              </button>
-              <button id="delete" class="btn btn-sm btn-default">
-                <span class="glyphicon glyphicon-remove"></span>
-                Delete Walls
-              </button>
-            </div>
-            <div id="draw-walls-hint">
-              Press the "Esc" key to stop drawing walls
-            </div>
-          </div>
-
-          <!-- Add Items -->
-          <div id="add-items">
-            <div class="row" id="items-wrapper">
-
-              <!-- Items added here by items.js -->
-            </div>
-          </div>
-      
-        </div>
-        <!-- End Right Column -->
+        <button id="move" class="btn btn-sm btn-default">
+          <span class="glyphicon glyphicon-move"></span>
+          Move Walls
+        </button>
+        <button id="draw" class="btn btn-sm btn-default">
+          <span class="glyphicon glyphicon-pencil"></span>
+          Draw Walls
+        </button>
+        <button id="delete" class="btn btn-sm btn-default">
+          <span class="glyphicon glyphicon-remove"></span>
+          Delete Walls
+        </button>
       </div>
-    </div>
-
+      <div id="draw-walls-hint">
+        Press the "Esc" key to stop drawing walls
+      </div>
+    </div>      
   </body>
 </html>
