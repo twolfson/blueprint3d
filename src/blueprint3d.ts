@@ -38,3 +38,6 @@ module BP3D {
     }
   }
 }
+
+declare interface Window { BP3D: any }
+window.BP3D = BP3D;
