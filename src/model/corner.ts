@@ -113,7 +113,6 @@ module BP3D.Model {
 
     /** Remove callback. Fires the delete callbacks. */
     public remove() {
-      console.log('reeeemooooove', this.id);
       this.deleted_callbacks.fire(this);
     }
 
@@ -289,7 +288,6 @@ module BP3D.Model {
       for (var i = 0; i < this.floorplan.getCorners().length; i++) {
         var corner = this.floorplan.getCorners()[i];
         if (this.distanceFromCorner(corner) < cornerTolerance && corner != this) {
-          console.log('combo', this.id, corner.id);
           this.combineWithCorner(corner);
           return true;
         }

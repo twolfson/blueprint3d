@@ -217,7 +217,6 @@ module BP3D.Floorplanner {
       // dragging
       if (this.mode == floorplannerModes.MOVE && this.mouseDown) {
         if (this.activeCorner) {
-          console.log('wat', this.activeCorner.id);
           this.activeCorner.move(this.mouseX, this.mouseY);
           this.activeCorner.snapToAxis(snapTolerance);
         } else if (this.activeWall) {
