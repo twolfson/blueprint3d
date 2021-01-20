@@ -6,6 +6,8 @@ Adjustments:
 - [x] Fixed corner removal behavior
 - [ ] Fix double wall we create when collapsing into an "L" shape
   - Omitted for now as it's not a common case and non-breaking
+- [x] Updated example page to demonstrate floating standalone
+- [ ] Fix draw click to count, even if there's a little drag
 
 ---
 
