@@ -35,6 +35,9 @@ The easiest way to run locally is to run a local server from the `example` direc
 
     cd example
 
+    # LiveReload (in example folder only, python-livereload)
+    livereload
+
     # Python 2.x
     python -m SimpleHTTPServer
 
