@@ -35,29 +35,21 @@ module BP3D.Model {
       this.scene = new Scene(this, textureDir);
     }
 
-    private _load(data) {
-      this.newRoom(
-        data.floorplan,
-        data.items
-      );
-    }
-    private load(data) {
-      this.roomLoadingCallbacks.fire();
-      this._load(data);
-      this.roomLoadedCallbacks.fire();
-    }
     private loadSerialized(json: string) {
       // TODO: better documentation on serialization format.
       // TODO: a much better serialization format.
       this.roomLoadingCallbacks.fire();
 
-      var data = JSON.parse(json);
-      this._load(data);
+      var data = JSON.parse(json)
+      this.newRoom(
+        data.floorplan,
+        data.items
+      );
 
       this.roomLoadedCallbacks.fire();
     }
 
-    private export() {
+    private exportSerialized(): string {
       var items_arr = [];
       var objects = this.scene.getItems();
       for (var i = 0; i < objects.length; i++) {
@@ -81,10 +73,7 @@ module BP3D.Model {
         floorplan: (this.floorplan.saveFloorplan()),
         items: items_arr
       };
-      return room;
-    }
-    private exportSerialized(): string {
-      var room = this.export();
+
       return JSON.stringify(room);
     }
 
