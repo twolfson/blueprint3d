@@ -1,24 +1,4 @@
 /*
- * Side menu
- */
-
-var SideMenu = function(blueprint3d, floorplanControls, modalEffects) {
-  this.stateChangeCallbacks = $.Callbacks();
-
-  function init() {
-    // show and hide the right divs
-    $("#floorplanner").show()
-
-    // custom actions
-    floorplanControls.updateFloorplanView();
-    floorplanControls.handleWindowResize();
-    blueprint3d.model.floorplan.update();
-  }
-
-  init();
-}
-
-/*
  * Floorplanner controls
  */
 
@@ -114,7 +94,14 @@ $(document).ready(function() {
   window.blueprint3d = blueprint3d;
 
   var viewerFloorplanner = new ViewerFloorplanner(blueprint3d);
-  var sideMenu = new SideMenu(blueprint3d, viewerFloorplanner);
+
+  // show and hide the right divs
+  $("#floorplanner").show()
+
+  // custom actions
+  viewerFloorplanner.updateFloorplanView();
+  viewerFloorplanner.handleWindowResize();
+  blueprint3d.model.floorplan.update();
 
   // This serialization format needs work
   // Load a simple rectangle room
