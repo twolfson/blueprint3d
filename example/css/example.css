@@ -13,9 +13,10 @@
   position: absolute;
   left: 0;
   top: 0;
-  margin: 20px 0;
-  padding: 0 20px; 
-  width: 100%;
+  /*margin: 20px 0;*/
+  margin: 20px; margin-bottom: 0; /* Corrected for disabled padding */
+  /*padding: 0 20px; */ /* Disabled: Padding prob also blocks interactions */
+  /*width: 100%;*/ /* Disabled: Was blocking large portion of page */
 }
 
 #draw-walls-hint {
