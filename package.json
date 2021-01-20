@@ -33,7 +33,9 @@
     "url": "https://github.com/Ekki/blueprint3d.git"
   },
   "scripts": {
-    "build": "browserify src/blueprint3d.js > example/js/blueprint3d.js --verbose"
+    "build": "grunt",
+    "_build": "browserify src/blueprint3d.js > example/js/blueprint3d.js --verbose",
+    "postinstall": "npm run build"
   },
   "author": ""
 }
