@@ -196,63 +196,19 @@ var ModalEffects = function(blueprint3d) {
  */
 
 var SideMenu = function(blueprint3d, floorplanControls, modalEffects) {
-  var blueprint3d = blueprint3d;
-  var floorplanControls = floorplanControls;
-  var modalEffects = modalEffects;
-
-  var ACTIVE_CLASS = "active";
-
-  var tabs = {
-    "FLOORPLAN" : $("#floorplan_tab"),
-    "SHOP" : $("#items_tab"),
-    "DESIGN" : $("#design_tab")
-  }
-
-  var scope = this;
   this.stateChangeCallbacks = $.Callbacks();
 
-  this.states = {
-    "DEFAULT" : {
-      "div" : $("#viewer"),
-      "tab" : tabs.DESIGN
-    },
-    "FLOORPLAN" : {
-      "div" : $("#floorplanner"),
-      "tab" : tabs.FLOORPLAN
-    },
-    "SHOP" : {
-      "div" : $("#add-items"),
-      "tab" : tabs.SHOP
-    }
-  }
-
-  // sidebar state
-  var currentState = scope.states.DEFAULT;
-
   function init() {
-    blueprint3d.three.updateWindowSize();
-
-    setCurrentState(scope.states.FLOORPLAN);
-  }
-  
-  function setCurrentState(newState) {
     // show and hide the right divs
-    currentState.div.hide()
-    newState.div.show()
+    $("#floorplanner").show()
 
     // custom actions
     floorplanControls.updateFloorplanView();
     floorplanControls.handleWindowResize();
     blueprint3d.model.floorplan.update();
- 
-    // set new state
-    currentState = newState;
-
-    scope.stateChangeCallbacks.fire(newState);
   }
 
   init();
-
 }
 
 /*
