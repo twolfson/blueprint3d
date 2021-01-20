@@ -145,6 +145,7 @@ module BP3D.Floorplanner {
 
     /** */
     private drawEdgeLabel(edge: Model.HalfEdge) {
+      return;
       var pos = edge.interiorCenter();
       var length = edge.interiorDistance();
       if (length < 60) {
