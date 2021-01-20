@@ -227,7 +227,7 @@ var SideMenu = function(blueprint3d, floorplanControls, modalEffects) {
   }
 
   // sidebar state
-  var currentState = scope.states.FLOORPLAN;
+  var currentState = scope.states.DEFAULT;
 
   function init() {
     for (var tab in tabs) {
@@ -244,7 +244,7 @@ var SideMenu = function(blueprint3d, floorplanControls, modalEffects) {
 
     initItems();
 
-    setCurrentState(scope.states.DEFAULT);
+    setCurrentState(scope.states.FLOORPLAN);
   }
 
   function floorplanUpdate() {
