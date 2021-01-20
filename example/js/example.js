@@ -230,113 +230,25 @@ var SideMenu = function(blueprint3d, floorplanControls, modalEffects) {
   var currentState = scope.states.DEFAULT;
 
   function init() {
-    for (var tab in tabs) {
-      var elem = tabs[tab];
-      elem.click(tabClicked(elem));
-    }
-
-    $("#update-floorplan").click(floorplanUpdate);
-
-    initLeftMenu();
-
     blueprint3d.three.updateWindowSize();
-    handleWindowResize();
-
-    initItems();
 
     setCurrentState(scope.states.FLOORPLAN);
   }
-
-  function floorplanUpdate() {
-    setCurrentState(scope.states.DEFAULT);
-  }
-
-  function tabClicked(tab) {
-    return function() {
-      // Stop three from spinning
-      blueprint3d.three.stopSpin();
-
-      // Selected a new tab
-      for (var key in scope.states) {
-        var state = scope.states[key];
-        if (state.tab == tab) {
-          setCurrentState(state);
-          break;
-        }
-      }
-    }
-  }
   
   function setCurrentState(newState) {
-
-    if (currentState == newState) {
-      return;
-    }
-
-    // show the right tab as active
-    if (currentState.tab !== newState.tab) {
-      if (currentState.tab != null) {
-        currentState.tab.removeClass(ACTIVE_CLASS);          
-      }
-      if (newState.tab != null) {
-        newState.tab.addClass(ACTIVE_CLASS);
-      }
-    }
-
-    // set item unselected
-    blueprint3d.three.getController().setSelectedObject(null);
-
     // show and hide the right divs
     currentState.div.hide()
     newState.div.show()
 
     // custom actions
-    if (newState == scope.states.FLOORPLAN) {
-      floorplanControls.updateFloorplanView();
-      floorplanControls.handleWindowResize();
-    } 
-
-    if (currentState == scope.states.FLOORPLAN) {
-      blueprint3d.model.floorplan.update();
-    }
-
-    if (newState == scope.states.DEFAULT) {
-      blueprint3d.three.updateWindowSize();
-    }
+    floorplanControls.updateFloorplanView();
+    floorplanControls.handleWindowResize();
+    blueprint3d.model.floorplan.update();
  
     // set new state
-    handleWindowResize();    
     currentState = newState;
 
     scope.stateChangeCallbacks.fire(newState);
-  }
-
-  function initLeftMenu() {
-    $( window ).resize( handleWindowResize );
-    handleWindowResize();
-  }
-
-  function handleWindowResize() {
-    $(".sidebar").height(window.innerHeight);
-    $("#add-items").height(window.innerHeight);
-
-  };
-
-  // TODO: this doesn't really belong here
-  function initItems() {
-    $("#add-items").find(".add-item").mousedown(function(e) {
-      var modelUrl = $(this).attr("model-url");
-      var itemType = parseInt($(this).attr("model-type"));
-      var metadata = {
-        itemName: $(this).attr("model-name"),
-        resizable: true,
-        modelUrl: modelUrl,
-        itemType: itemType
-      }
-
-      blueprint3d.model.scene.addItem(itemType, modelUrl, metadata);
-      setCurrentState(scope.states.DEFAULT);
-    });
   }
 
   init();
