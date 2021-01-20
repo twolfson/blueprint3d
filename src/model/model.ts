@@ -32,6 +32,7 @@ module BP3D.Model {
      */
     constructor(textureDir: string) {
       this.floorplan = new Floorplan();
+      this.scene = new Scene(this, textureDir);
     }
 
     private loadSerialized(json: string) {
