@@ -35,6 +35,7 @@ module BP3D.Model {
       this.scene = new Scene(this, textureDir);
     }
 
+    // DEV: We could break out JSON.parse from this, but it would risk having state leaked elsewhere
     private loadSerialized(json: string) {
       // TODO: better documentation on serialization format.
       // TODO: a much better serialization format.
@@ -49,6 +50,7 @@ module BP3D.Model {
       this.roomLoadedCallbacks.fire();
     }
 
+    // DEV: We could break out JSON.stringify from this, but it would risk having state leaked elsewhere
     private exportSerialized(): string {
       var items_arr = [];
       var objects = this.scene.getItems();
