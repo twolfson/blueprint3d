@@ -134,7 +134,7 @@ module BP3D.Model {
     private move(newX: number, newY: number) {
       this.x = newX;
       this.y = newY;
-      this.mergeWithIntersected();
+      // this.mergeWithIntersected();
       this.moved_callbacks.fire(this.x, this.y);
 
       this.wallStarts.forEach((wall) => {

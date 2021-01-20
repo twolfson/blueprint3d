@@ -247,6 +247,16 @@ module BP3D.Floorplanner {
         }
         this.lastNode = corner;
       }
+
+      // dragging
+      if (this.mode == floorplannerModes.MOVE) {
+        if (this.activeCorner) {
+          this.activeCorner.mergeWithIntersected();
+        } else if (this.activeWall) {
+          this.activeWall.start.mergeWithIntersected();
+          this.activeWall.end.mergeWithIntersected();
+        }
+      }
     }
 
     /** */
