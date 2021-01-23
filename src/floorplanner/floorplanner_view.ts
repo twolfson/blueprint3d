@@ -288,6 +288,7 @@ module BP3D.Floorplanner {
     public computeTextDimensions(text: string) {
       // {width: 16.66, actualBoundingBoxLeft: 8.33, actualBoundingBoxRight: 8.66,
       //  actualBoundingBoxAscent: 5.69, actualBoundingBoxDescent: 3.30}
+      this.setTextLabelStyles();
       return this.context.measureText(text);
     }
 
@@ -296,7 +297,7 @@ module BP3D.Floorplanner {
       this.setTextLabelStyles();
       var x = this.viewmodel.convertX(label.x);
       var y = this.viewmodel.convertY(label.y);
-      var textInfo = this.computeTextDimensions();
+      var textInfo = this.computeTextDimensions(label.text);
       var textLabelPadding = 4;
       var lineHeight = 19.2;
       this.context.fillStyle = label.background;
