@@ -284,18 +284,21 @@ module BP3D.Floorplanner {
       this.context.font = "normal 12px Arial";
       this.context.fillStyle = label.color;
       this.context.textBaseline = "middle";
-      this.context.textAlign = "left";
+      this.context.textAlign = "center";
       this.context.lineWidth = 4;
 
-      this.context.fillText(label.text,
-        this.viewmodel.convertX(label.x),
-        this.viewmodel.convertY(label.y));
+      var x = this.viewmodel.convertX(label.x);
+      var y = this.viewmodel.convertY(label.y);
+      this.context.fillText(label.text, x, y);
 
-      // console.log(this.context.measureText(label.text));
-      this.context.fillRect(
-        this.viewmodel.convertX(label.x)
-        this.viewmodel.convertY(label.y),
-        2, 2);
+      // {width: 16.66, actualBoundingBoxLeft: 8.33, actualBoundingBoxRight: 8.66,
+      //  actualBoundingBoxAscent: 5.69, actualBoundingBoxDescent: 3.30}
+      var textInfo = this.context.measureText(label.text);
+      this.context.fillStyle = '#FF00FF';
+      this.context.fillRect(x - textInfo.actualBoundingBoxLeft, y - textInfo.actualBoundingBoxAscent, 3, 3);
+      this.context.fillRect(x + textInfo.actualBoundingBoxRight, y - textInfo.actualBoundingBoxAscent, 3, 3);
+      this.context.fillRect(x + textInfo.actualBoundingBoxRight, y + textInfo.actualBoundingBoxDescent, 3, 3);
+      this.context.fillRect(x - textInfo.actualBoundingBoxLeft, y + textInfo.actualBoundingBoxDescent, 3, 3);
     }
 
     /** */
