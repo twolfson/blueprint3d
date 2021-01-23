@@ -259,12 +259,24 @@ module BP3D.Floorplanner {
         // If we have a selection, move that
         // DEV: Selection will become deselected on mouse down
         if (!this.overlay && this.selectedWalls) {
+          var seenCorners = new Set();
           this.selectedWalls.forEach((wall) => {
-            wall.relativeMove(
-              (this.rawMouseX - this.lastX) * this.cmPerPixel,
-              (this.rawMouseY - this.lastY) * this.cmPerPixel
-            );
-            wall.snapToAxis(snapTolerance);
+            if (!seenCorners.has(wall.start)) {
+              wall.start.relativeMove(
+                (this.rawMouseX - this.lastX) * this.cmPerPixel,
+                (this.rawMouseY - this.lastY) * this.cmPerPixel
+              );
+            }
+            if (!seenCorners.has(wall.end)) {
+              wall.end.relativeMove(
+                (this.rawMouseX - this.lastX) * this.cmPerPixel,
+                (this.rawMouseY - this.lastY) * this.cmPerPixel
+              );
+            }
+            seenCorners.add(wall.start);
+            seenCorners.add(wall.end);
+            // TODO: Determine if `snapToAxis` ideal
+            // wall.snapToAxis(snapTolerance);
           });
           this.lastX = this.rawMouseX;
           this.lastY = this.rawMouseY;

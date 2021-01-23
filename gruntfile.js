@@ -27,7 +27,7 @@ module.exports = function (grunt) {
 
   configuration.typescript = {
     options: {
-      target: "es5",
+      target: "es6",
       declaration: true,
       sourceMap: true,
       removeComments: false
