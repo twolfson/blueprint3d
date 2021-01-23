@@ -182,7 +182,6 @@ module BP3D.Floorplanner {
           endX: this.mouseX,
           endY: this.mouseY,
         };
-        this.multiselectWalls = [];
         this.view.draw();
       }
     }
@@ -318,6 +317,7 @@ module BP3D.Floorplanner {
     /** */
     private setMode(mode: number) {
       this.lastNode = null;
+      this.multiselectWalls = null;
       this.mode = mode;
       this.modeResetCallbacks.fire(mode);
       this.updateTarget();
