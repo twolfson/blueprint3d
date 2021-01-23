@@ -201,9 +201,13 @@ module BP3D.Model {
         {x: x1, y: y2},
       ];
       for (var i = 0; i < this.walls.length; i++) {
-        var walls = this.walls[i];
-        if (Core.Utils.pointInPolygon(walls.getStartX(), walls.getStartY(), corners) || 
-            Core.Utils.pointInPolygon(walls.getEndX(),   walls.getEndY(),   corners)) {
+        var wall = this.walls[i];
+        if (Core.Utils.linePolygonIntersect(
+              wall.getStartX(), wall.getStartY(),
+              wall.getEndX(), wall.getEndY(),
+              corners) ||
+            Core.Utils.pointInPolygon(wall.getStartX(), wall.getStartY(), corners) ||
+            Core.Utils.pointInPolygon(wall.getEndX(),   wall.getEndY(),   corners)) {
           containedWalls.push(this.walls[i]);
         }
       }
