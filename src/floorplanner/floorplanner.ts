@@ -175,13 +175,23 @@ module BP3D.Floorplanner {
 
       // DEV: Must come after `delete` check as that changes mode to MOVE
       // multiselect
-      if (this.mode == floorplannerModes.MOVE && !this.activeCorner && !this.activeWall && !this.selectedWalls) {
-        this.overlay = {
-          startX: this.mouseX,
-          startY: this.mouseY,
-          endX: this.mouseX,
-          endY: this.mouseY,
-        };
+      if (this.mode == floorplannerModes.MOVE) {
+        // If we have a target
+        if (this.activeCorner || this.activeWall) {
+          // If the target isn't in our selection, then remove our selection
+          if (this.selectedWalls && !this.selectedWalls.includes(this.activeWall)) {
+            this.selectedWalls = null;
+          }
+        // Otherwise (no target), start a new overlay
+        } else {
+          this.overlay = {
+            startX: this.mouseX,
+            startY: this.mouseY,
+            endX: this.mouseX,
+            endY: this.mouseY,
+          };
+          this.selectedWalls = null;
+        }
         this.view.draw();
       }
     }
@@ -246,9 +256,11 @@ module BP3D.Floorplanner {
 
       // dragging
       if (this.mode == floorplannerModes.MOVE && this.mouseDown) {
+        // If we're targeting a corner, move it
         if (this.activeCorner) {
           this.activeCorner.move(this.mouseX, this.mouseY);
           this.activeCorner.snapToAxis(snapTolerance);
+        // Otherwise, if our target is a wall
         } else if (this.activeWall) {
           this.activeWall.relativeMove(
             (this.rawMouseX - this.lastX) * this.cmPerPixel,
