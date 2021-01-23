@@ -100,8 +100,8 @@ module BP3D.Floorplanner {
 
       var scope = this;
 
-      this.canvasElement.mousedown(() => {
-        scope.mousedown();
+      this.canvasElement.mousedown((event) => {
+        scope.mousedown(event);
       });
       this.canvasElement.mousemove((event) => {
         scope.mousemove(event);
@@ -151,7 +151,7 @@ module BP3D.Floorplanner {
     }
 
     /** */
-    private mousedown() {
+    private mousedown(event) {
       this.mouseDown = true;
       this.mouseMoved = false;
       this.lastX = this.rawMouseX;
@@ -179,11 +179,14 @@ module BP3D.Floorplanner {
         };
         this.view.draw();
       }
+      console.log(event.button);
     }
 
     /** */
     private mousemove(event) {
       this.mouseMoved = true;
+
+      console.log(event.button);
 
       // update mouse
       this.rawMouseX = event.clientX;
@@ -250,6 +253,14 @@ module BP3D.Floorplanner {
         }
         this.view.draw();
       }
+
+      // multiselect, when no mouse down
+      if (this.mode == floorplannerModes.MOVE && !this.mouseDown) {
+        if (this.overlay) {
+          this.overlay = null;
+          this.view.draw();
+        }
+      }
     }
 
     /** */
@@ -284,8 +295,7 @@ module BP3D.Floorplanner {
 
     /** */
     private mouseleave() {
-      this.mouseDown = false;
-      this.overlay = null;
+      // this.mouseDown = false;
       //scope.setMode(scope.modes.MOVE);
     }
 
