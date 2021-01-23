@@ -24,6 +24,11 @@ module BP3D.Floorplanner {
     public overlay = null;
 
     /** */
+    // DEV: Contrasting to activeWall in that it persists focus
+    //   and persists after overlay is gone (strange edge cases around `mouseleave`)
+    public multiselectWalls = null;
+
+    /** */
     public originX = 0;
 
     /** */
@@ -176,8 +181,8 @@ module BP3D.Floorplanner {
           startY: this.mouseY,
           endX: this.mouseX,
           endY: this.mouseY,
-          walls: [],
         };
+        this.multiselectWalls = [];
         this.view.draw();
       }
     }
@@ -248,8 +253,7 @@ module BP3D.Floorplanner {
           // multiselect
           this.overlay.endX = this.mouseX;
           this.overlay.endY = this.mouseY;
-
-          this.overlay.walls = this.floorplan.containedWalls(
+          this.multiselectWalls = this.floorplan.containedWalls(
             this.overlay.startX, this.overlay.startY,
             this.overlay.endX, this.overlay.endY);
         }
@@ -290,7 +294,10 @@ module BP3D.Floorplanner {
     /** */
     private mouseleave() {
       this.mouseDown = false;
-      this.overlay = null;
+      if (this.overlay) {
+        this.overlay = null;
+        this.multiselectWalls = null;
+      }
       //scope.setMode(scope.modes.MOVE);
       this.view.draw();
     }
