@@ -206,6 +206,23 @@ module BP3D.Core {
       return (tCCW(tP1, tP3, tP4) != tCCW(tP2, tP3, tP4)) && (tCCW(tP1, tP2, tP3) != tCCW(tP1, tP2, tP4));
     }
 
+    /** */
+    // DEV: Written to avoid troubleshooting `pointInPolygon`
+    static pointInRectangle(x: number, y: number, startX: number, startY: number, endX: number, endY: number): boolean {
+      var tmp;
+      if (startX > endX) {
+        tmp = startX;
+        startX = endX;
+        endX = tmp;
+      }
+      if (startY > endY) {
+        tmp = startY;
+        startY = endY;
+        endY = tmp;
+      }
+      return (x >= startX && x <= endX && y >= startY && y <= endY);
+    }
+
     /**
      @param corners Is an array of points with x,y attributes
       @param startX X start coord for raycast

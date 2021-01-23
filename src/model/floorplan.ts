@@ -187,24 +187,21 @@ module BP3D.Model {
       return null;
     }
 
-    // TODO: Break out intersect call into `model/Wall`?
-    // TODO: Reconsider storing overlay data as x1/y1/x2/y2, maybe do all 4 corners like they like...
-    public containedWalls(x1: number, y1: number, x2: number, y2: number): Wall[] {
+    public containedWalls(startX: number, startY: number, endX: number, endY: number): Wall[] {
       var containedWalls = [];
-      var corners = [
-        {x: x1, y: y1},
-        {x: x2, y: y1},
-        {x: x2, y: y2},
-        {x: x1, y: y2},
-      ];
       for (var i = 0; i < this.walls.length; i++) {
         var wall = this.walls[i];
         if (Core.Utils.linePolygonIntersect(
               wall.getStartX(), wall.getStartY(),
               wall.getEndX(), wall.getEndY(),
-              corners) ||
-            Core.Utils.pointInPolygon(wall.getStartX(), wall.getStartY(), corners) ||
-            Core.Utils.pointInPolygon(wall.getEndX(),   wall.getEndY(),   corners)) {
+              [
+                {x: startX, y: startY},
+                {x: endX, y: startY},
+                {x: endX, y: endY},
+                {x: startX, y: endY},
+              ]) ||
+            Core.Utils.pointInRectangle(wall.getStartX(), wall.getStartY(), startX, startY, endX, endY) ||
+            Core.Utils.pointInRectangle(wall.getEndX(),   wall.getEndY(),   startX, startY, endX, endY)) {
           containedWalls.push(this.walls[i]);
         }
       }
