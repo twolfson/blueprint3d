@@ -33,6 +33,7 @@ module BP3D.Floorplanner {
   const edgeColorHover = "#008cba"
   const edgeWidth = 1
 
+  const deselectColor = "#90b6d9";
   const deleteColor = "#ff0000";
 
   // corner config
@@ -122,13 +123,22 @@ module BP3D.Floorplanner {
 
     /** */
     private drawWall(wall: Model.Wall) {
-      var hover = (wall === this.viewmodel.activeWall) ||
-        (this.viewmodel.multiselectWalls && this.viewmodel.multiselectWalls.includes(wall));
+      var activeWall = this.viewmodel.activeWall;
+      var hover = (wall === activeWall);
+      var selected = (this.viewmodel.multiselectWalls && this.viewmodel.multiselectWalls.includes(wall));
       var color = wallColor;
       if (hover && this.viewmodel.mode == floorplannerModes.DELETE) {
         color = deleteColor;
       } else if (hover) {
         color = wallColorHover;
+      } else if (selected) {
+        // If there's an active wall outside of the multiselect, then show deselect
+        if (activeWall && !this.viewmodel.multiselectWalls.includes(activeWall)) {
+          color = deselectColor;
+        // Otherwise, show normal hovercolor
+        } else {
+          color = wallColorHover;
+        }
       }
       this.drawLine(
         this.viewmodel.convertX(wall.getStartX()),
@@ -138,10 +148,10 @@ module BP3D.Floorplanner {
         hover ? wallWidthHover : wallWidth,
         color
       );
-      if (!hover && wall.frontEdge) {
+      if (!(hover || selected) && wall.frontEdge) {
         this.drawEdge(wall.frontEdge, hover);
       }
-      if (!hover && wall.backEdge) {
+      if (!(hover || selected) && wall.backEdge) {
         this.drawEdge(wall.backEdge, hover);
       }
     }
