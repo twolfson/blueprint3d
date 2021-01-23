@@ -256,8 +256,20 @@ module BP3D.Floorplanner {
 
       // dragging
       if (this.mode == floorplannerModes.MOVE && this.mouseDown) {
-        // If we're targeting a corner, move it
-        if (this.activeCorner) {
+        // If we have a selection, move that
+        // DEV: Selection will become deselected on mouse down
+        if (!this.overlay && this.selectedWalls) {
+          this.selectedWalls.forEach((wall) => {
+            wall.relativeMove(
+              (this.rawMouseX - this.lastX) * this.cmPerPixel,
+              (this.rawMouseY - this.lastY) * this.cmPerPixel
+            );
+            wall.snapToAxis(snapTolerance);
+          });
+          this.lastX = this.rawMouseX;
+          this.lastY = this.rawMouseY;
+        // Otherwise, if we're targeting a corner, move it
+        } else if (this.activeCorner) {
           this.activeCorner.move(this.mouseX, this.mouseY);
           this.activeCorner.snapToAxis(snapTolerance);
         // Otherwise, if our target is a wall
@@ -269,8 +281,9 @@ module BP3D.Floorplanner {
           this.activeWall.snapToAxis(snapTolerance);
           this.lastX = this.rawMouseX;
           this.lastY = this.rawMouseY;
+        // Otherwise (no target)
         } else {
-          // multiselect
+          // Track our overlay positioning and selected walls
           this.overlay.endX = this.mouseX;
           this.overlay.endY = this.mouseY;
           this.selectedWalls = this.floorplan.containedWalls(
