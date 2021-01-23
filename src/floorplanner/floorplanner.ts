@@ -247,6 +247,10 @@ module BP3D.Floorplanner {
           // multiselect
           this.overlay.endX = this.mouseX;
           this.overlay.endY = this.mouseY;
+
+          this.overlay.walls = this.floorplan.containedWalls(
+            this.overlay.startX, this.overlay.startY,
+            this.overlay.endX, this.overlay.endY);
         }
         this.view.draw();
       }

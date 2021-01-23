@@ -187,6 +187,20 @@ module BP3D.Model {
       return null;
     }
 
+    // TODO: Explore using linePolygonIntersect
+    // TODO: Break out intersect call into `model/Wall`?
+    public containedWalls(x1: number, y1: number, x2: number, y2: number, tolerance?: number): Wall[] {
+      tolerance = tolerance || defaultFloorPlanTolerance;
+      var containedWalls = [this.walls[1], this.walls[2]];
+      // linePolygonIntersect
+      // for (var i = 0; i < this.walls.length; i++) {
+      //   if (this.walls[i].overlapAmount(x1, y1, x2, y2) < tolerance) {
+      //     containedWalls.push(this.walls[i]);
+      //   }
+      // }
+      return containedWalls;
+    }
+
     // import and export -- cleanup
 
     public saveFloorplan() {
