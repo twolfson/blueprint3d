@@ -125,7 +125,7 @@ module BP3D.Floorplanner {
     private drawWall(wall: Model.Wall) {
       var activeWall = this.viewmodel.activeWall;
       var hover = (wall === activeWall);
-      var selected = (this.viewmodel.multiselectWalls && this.viewmodel.multiselectWalls.includes(wall));
+      var selected = (this.viewmodel.selectedWalls && this.viewmodel.selectedWalls.includes(wall));
       var color = wallColor;
       if (hover && this.viewmodel.mode == floorplannerModes.DELETE) {
         color = deleteColor;
@@ -133,7 +133,7 @@ module BP3D.Floorplanner {
         color = wallColorHover;
       } else if (selected) {
         // If there's an active wall outside of the multiselect, then show deselect
-        if (activeWall && !this.viewmodel.multiselectWalls.includes(activeWall)) {
+        if (activeWall && !this.viewmodel.selectedWalls.includes(activeWall)) {
           color = deselectColor;
         // Otherwise, show normal hovercolor
         } else {
