@@ -158,8 +158,10 @@ module BP3D.Model {
 
     // DEV: Text labels are meant to be preset by our container
     //   so no need for remove functionality
-    public newTextLabel(x: number, y: number, id?: string): TextLabel {
-      var textLabel = new TextLabel(this, x, y, id);
+    public newTextLabel(x: number, y: number,
+        text: string, background: string, color: string,
+        id?: string): TextLabel {
+      var textLabel = new TextLabel(this, x, y, text, background, color, id);
       this.textLabels.push(textLabel);
       return textLabel;
     }
