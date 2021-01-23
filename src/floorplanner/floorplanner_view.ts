@@ -295,27 +295,13 @@ module BP3D.Floorplanner {
     private drawTextLabel(label) {
       // Draw our box background
       this.setTextLabelStyles();
-      var x = this.viewmodel.convertX(label.x);
-      var y = this.viewmodel.convertY(label.y);
-      var textInfo = this.computeTextDimensions(label.text);
-      var textLabelPadding = 4;
-      var lineHeight = 19.2;
       this.context.fillStyle = label.background;
-      this.context.fillRect(
-        x - textInfo.actualBoundingBoxLeft - textLabelPadding, y - lineHeight/2 - textLabelPadding,
-        textInfo.actualBoundingBoxLeft + textInfo.actualBoundingBoxRight + textLabelPadding*2,
-        lineHeight + textLabelPadding*2);
-
-      // Debug content for text bounds
-      // this.context.fillStyle = '#FF00FF';
-      // this.context.fillRect(x - textInfo.actualBoundingBoxLeft, y - textInfo.actualBoundingBoxAscent, 3, 3);
-      // this.context.fillRect(x + textInfo.actualBoundingBoxRight, y - textInfo.actualBoundingBoxAscent, 3, 3);
-      // this.context.fillRect(x + textInfo.actualBoundingBoxRight, y + textInfo.actualBoundingBoxDescent, 3, 3);
-      // this.context.fillRect(x - textInfo.actualBoundingBoxLeft, y + textInfo.actualBoundingBoxDescent, 3, 3);
+      // TODO: We might need to convert x/y here...
+      this.context.fillRect(label.x, label.y, label.getWidth(), label.getHeight());
 
       // Draw our text
       this.context.fillStyle = label.color;
-      this.context.fillText(label.text, x, y);
+      this.context.fillText(label.text, label.getCenterX(), label.getCenterY());
     }
 
     /** */
