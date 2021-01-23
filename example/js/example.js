@@ -113,4 +113,5 @@ $(document).ready(function() {
     '#0084ce',
     '#FFF');
   blueprint3d.model.floorplan.update();
+  blueprint3d.model.floorplan.roomLoadedCallbacks.fire();
 });
