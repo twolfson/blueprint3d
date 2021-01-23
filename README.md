@@ -1,3 +1,32 @@
+Changelog:
+
+All `git tag` prefixed with `twolfson` for isolation
+
+- 1.1.0 - Added multiselect support for walls
+    - *Note:* Done rather quickly/sloppily, can be built in a much more performant way, but we're exploring UX as current priority
+    - Select middle of an edge
+    - Select corner of an edge
+    - Select multiple edges
+    - Mouse leaving terminates overlay (as we can't guarnatee knowing mouse state on return)
+    - Clicking on another edge deselects content
+        - Hover preview
+        - Actual movement
+    - Clicking on a corner deselects content
+        - Hover preview
+        - Actual movement
+    - Switching modes cancels multiselect
+    - Clicking + dragging multiselect content
+        - Moves relevant walls/corners
+        - Merges relevant walls/corners
+    - Bonus: Hovering a selected wall still grows bigger
+- 1.0.0 - Customized repo to make it usable for our needs
+    - Removed a lot of example UI
+    - Disabled panning
+    - Updated corners/walls to only merge on drag stop
+    - Fixed corner removal behavior
+    - Updated example page to demonstrate floating standalone
+
+
 Development:
 
 ```bash
@@ -7,37 +36,15 @@ livereload example/
 serve example/
 ```
 
-Adjustments:
+Backlog:
 
-- [x] Removed a lot of example UI
-- [x] Disabled panning
-- [x] Updated corners/walls to only merge on drag stop
-- [x] Fixed corner removal behavior
 - [ ] Fix double wall we create when collapsing into an "L" shape
   - Omitted for now as it's not a common case and non-breaking
-- [x] Updated example page to demonstrate floating standalone
 - [ ] Fix draw click to count, even if there's a little drag
 - [ ] Remove `items` and `scene` logic (no longer needed but lots of one-offs)
 - [ ] Remove `jQuery` - Used for event listeners, `classList` manipulation, and offset handling
 - [ ] Add `destroy` cleanup logic (e.g. unbinding DOM listeners, possibly emptying callbacks (might be unnecessary))
 - [ ] Fix up quick yet inefficient decisions when adding multiselect (e.g. better iteration of multiple corners of walls, figuring out alternatives to selecting subsets (could use fixed length arrays as bitfields))
-- [x] Review code via a diff for sanity check of any missed multiselect tasks/edge cases
-    - Test skeleton below:
-    - [x] Select middle of an edge
-    - [x] Select corner of an edge
-    - [x] Select multiple edges
-    - [x] Mouse leaving terminates overlay (as we can't guarnatee knowing mouse state on return)
-    - [x] Clicking on another edge deselects content
-        - [x] Hover preview
-        - [x] Actual movement
-    - [x] Clicking on a corner deselects content
-        - [x] Hover preview
-        - [x] Actual movement
-    - [x] Switching modes cancels multiselect
-    - [x] Clicking + dragging multiselect content
-        - [x] Moves relevant walls/corners
-        - [x] Merges relevant walls/corners
-    - Bonus: Hovering a selected wall still grows bigger
 
 ---
 
