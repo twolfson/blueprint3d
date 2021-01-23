@@ -6,12 +6,18 @@ module BP3D.Model {
         public x: number, public y: number,
         public text: string, public background: string, public color: string,
         public id?: string) {
+      var floorplanner = window.floorplanner;
+      if (!floorplanner || floorplanner instanceof HTMLElement) { throw new Error('Text labels require `window.floorplanner` to be defined for `canvas` context'); }
       this.id = id || Core.Utils.guid();
       this.x = x;
       this.y = y;
       this.text = text;
       this.background = background;
       this.color = color;
+    }
+
+    public getWidth(): number {
+
     }
 
     /** Moves corner relatively to new position.

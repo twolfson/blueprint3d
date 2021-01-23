@@ -56,7 +56,7 @@ module BP3D.Floorplanner {
     private canvasElement;
 
     /** */
-    private view: FloorplannerView;
+    public view: FloorplannerView;
 
     /** */
     private mouseDown = false;

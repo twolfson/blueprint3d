@@ -106,6 +106,7 @@ $(document).ready(function() {
   // Another model option: https://github.com/furnishup/blueprint3d/blob/cac8b62c1a3839e929334bdc125bf8a74866be9e/example/js/example.js#L472
 
   // Define our custom text labels
+  window.floorplanner = blueprint3d.floorplanner;
   blueprint3d.model.floorplan.newTextLabel(
     100,
     200,

@@ -279,19 +279,24 @@ module BP3D.Floorplanner {
       );
     }
 
-    /** */
-    private drawTextLabel(label) {
+    public setTextLabelStyles() {
       // Configure out text
       this.context.font = "normal 12.8px Arial";
       this.context.textBaseline = "middle";
       this.context.textAlign = "center";
-
-      // Draw our box background
-      var x = this.viewmodel.convertX(label.x);
-      var y = this.viewmodel.convertY(label.y);
+    }
+    public computeTextDimensions(text: string) {
       // {width: 16.66, actualBoundingBoxLeft: 8.33, actualBoundingBoxRight: 8.66,
       //  actualBoundingBoxAscent: 5.69, actualBoundingBoxDescent: 3.30}
-      var textInfo = this.context.measureText(label.text);
+      return this.context.measureText(text);
+    }
+
+    private drawTextLabel(label) {
+      // Draw our box background
+      this.setTextLabelStyles();
+      var x = this.viewmodel.convertX(label.x);
+      var y = this.viewmodel.convertY(label.y);
+      var textInfo = this.computeTextDimensions();
       var textLabelPadding = 4;
       var lineHeight = 19.2;
       this.context.fillStyle = label.background;
