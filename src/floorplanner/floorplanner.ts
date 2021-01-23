@@ -275,8 +275,6 @@ module BP3D.Floorplanner {
             }
             seenCorners.add(wall.start);
             seenCorners.add(wall.end);
-            // TODO: Determine if `snapToAxis` ideal
-            // wall.snapToAxis(snapTolerance);
           });
           this.lastX = this.rawMouseX;
           this.lastY = this.rawMouseY;
