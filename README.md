@@ -31,7 +31,7 @@ Development:
 
 ```bash
 # Each in a separate tab
-listen-spawn -- grunt
+npm run develop
 livereload example/
 serve example/
 ```
@@ -75,16 +75,13 @@ This is a customizable application built on three.js that allows users to design
 To get started, clone the repository and ensure you npm >= 3 and grunt installed, then run:
 
     npm install
-    grunt
+    npm run build
 
 The latter command generates `example/js/blueprint3d.js` from `src`.
 
 The easiest way to run locally is to run a local server from the `example` directory. There are plenty of options. One uses Python's built in webserver:
 
     cd example
-
-    # LiveReload (in example folder only, python-livereload)
-    livereload
 
     # Python 2.x
     python -m SimpleHTTPServer
