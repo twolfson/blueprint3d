@@ -250,13 +250,16 @@ module BP3D.Floorplanner {
     /** */
     private drawOverlay(overlay) {
       if (this.viewmodel.overlay) {
-        this.drawLine(
+        this.drawRectangle(
           this.viewmodel.convertX(overlay.startX),
           this.viewmodel.convertY(overlay.startY),
           this.viewmodel.convertX(overlay.endX),
           this.viewmodel.convertY(overlay.endY),
-          20,
-          '#FF00FF'
+          true /* fill */,
+          '#0000FF30',
+          true /* stroke */,
+          '#0000FF60',
+          2
         );
       }
     }
@@ -271,6 +274,31 @@ module BP3D.Floorplanner {
       this.context.lineWidth = width;
       this.context.strokeStyle = color;
       this.context.stroke();
+    }
+
+    /** */
+    // Clone of `drawPolygon` but without arrays (to avoid memory thrashing)
+    private drawRectangle(startX: number, startY: number, endX: number, endY: number, fill, fillColor, stroke?, strokeColor?, strokeWidth?) {
+      // fillColor is a hex string, i.e. #ff0000
+      fill = fill || false;
+      stroke = stroke || false;
+
+      this.context.beginPath();
+      this.context.moveTo(startX, startY);
+      this.context.lineTo(startX, endY);
+      this.context.lineTo(endX, endY);
+      this.context.lineTo(endX, startY);
+      this.context.closePath();
+
+      if (fill) {
+        this.context.fillStyle = fillColor;
+        this.context.fill();
+      }
+      if (stroke) {
+        this.context.lineWidth = strokeWidth;
+        this.context.strokeStyle = strokeColor;
+        this.context.stroke();
+      }
     }
 
     /** */
