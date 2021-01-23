@@ -106,7 +106,6 @@ module BP3D.Floorplanner {
         this.drawOverlay(this.viewmodel.overlay);
       }
 
-      console.log('aaa', this.floorplan.getTextLabels());
       this.floorplan.getTextLabels().forEach((label) => {
         this.drawTextLabel(label);
       });
@@ -286,7 +285,6 @@ module BP3D.Floorplanner {
       this.context.font = "normal 12.8px Arial";
       this.context.textBaseline = "middle";
       this.context.textAlign = "center";
-      console.log('aaa', label);
 
       // Draw our box background
       var x = this.viewmodel.convertX(label.x);
