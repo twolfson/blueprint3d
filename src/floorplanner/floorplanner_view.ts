@@ -100,6 +100,8 @@ module BP3D.Floorplanner {
       this.floorplan.getWalls().forEach((wall) => {
         this.drawWallLabels(wall);
       });
+
+      this.drawOverlay(this.viewmodel.overlay);
     }
 
     /** */
@@ -241,6 +243,20 @@ module BP3D.Floorplanner {
           this.viewmodel.convertY(y),
           wallWidthHover,
           wallColorHover
+        );
+      }
+    }
+
+    /** */
+    private drawOverlay(overlay) {
+      if (this.viewmodel.overlay) {
+        this.drawLine(
+          this.viewmodel.convertX(overlay.startX),
+          this.viewmodel.convertY(overlay.startY),
+          this.viewmodel.convertX(overlay.endX),
+          this.viewmodel.convertY(overlay.endY),
+          20,
+          '#FF00FF'
         );
       }
     }
