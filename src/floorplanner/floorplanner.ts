@@ -327,9 +327,14 @@ module BP3D.Floorplanner {
         } else if (this.activeWall) {
           this.activeWall.start.mergeWithIntersected();
           this.activeWall.end.mergeWithIntersected();
-        } else {
+        } else if (this.overlay) {
           this.overlay = null;
           this.view.draw();
+        } else if (this.selectedWalls) {
+          this.selectedWalls.forEach((wall) => {
+            wall.start.mergeWithIntersected();
+            wall.end.mergeWithIntersected();
+          });
         }
       }
     }
