@@ -10,6 +10,7 @@ Adjustments:
 - [ ] Fix draw click to count, even if there's a little drag
 - [ ] Remove `items` and `scene` logic (no longer needed but lots of one-offs)
 - [ ] Remove `jQuery` - Used for event listeners, `classList` manipulation, and offset handling
+- [ ] Add `destroy` cleanup logic (e.g. unbinding DOM listeners, possibly emptying callbacks (might be unnecessary))
 
 ---
 
