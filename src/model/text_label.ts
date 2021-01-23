@@ -4,9 +4,7 @@ module BP3D.Model {
   export class TextLabel {
     constructor(private floorplan: Floorplan,
         public x: number, public y: number,
-        public text: string,
-        public background: string,
-        public color: string,
+        public text: string, public background: string, public color: string,
         public id?: string) {
       this.id = id || Core.Utils.guid();
       this.x = x;

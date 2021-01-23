@@ -1,3 +1,6 @@
+TODO: Figure out how we can trigger a new draw, it definitely happens with `loadSerialized` soooo yea
+TODO: Add hover support next (will be proof of knowing dimensions)
+
 Changelog:
 
 All `git tag` prefixed with `twolfson` for isolation
