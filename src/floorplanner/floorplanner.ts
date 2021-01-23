@@ -175,7 +175,7 @@ module BP3D.Floorplanner {
 
       // DEV: Must come after `delete` check as that changes mode to MOVE
       // multiselect
-      if (this.mode == floorplannerModes.MOVE) {
+      if (this.mode == floorplannerModes.MOVE && !this.activeCorner && !this.activeWall && !this.selectedWalls) {
         this.overlay = {
           startX: this.mouseX,
           startY: this.mouseY,
@@ -204,22 +204,31 @@ module BP3D.Floorplanner {
 
       // update object target
       if (this.mode != floorplannerModes.DRAW && !this.mouseDown) {
+        // Determine what we're hovering
         var hoverCorner = this.floorplan.overlappedCorner(this.mouseX, this.mouseY);
         var hoverWall = this.floorplan.overlappedWall(this.mouseX, this.mouseY);
         var draw = false;
+
+        // If our corner has updated, then update it
         if (hoverCorner != this.activeCorner) {
           this.activeCorner = hoverCorner;
           draw = true;
         }
+
+        // If there was no corner
         // corner takes precendence
         if (this.activeCorner == null) {
+          // But we have a new wall, then make our wall active
           if (hoverWall != this.activeWall) {
             this.activeWall = hoverWall;
             draw = true;
           }
+        // Otherwise, ignore the wall (even if there is one)
         } else {
           this.activeWall = null;
         }
+
+        // Perform our draw
         if (draw) {
           this.view.draw();
         }
