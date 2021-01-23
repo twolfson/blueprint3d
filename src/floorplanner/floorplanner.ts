@@ -21,6 +21,9 @@ module BP3D.Floorplanner {
     public activeCorner = null;
 
     /** */
+    public overlay = null;
+
+    /** */
     public originX = 0;
 
     /** */
@@ -164,6 +167,18 @@ module BP3D.Floorplanner {
           this.setMode(floorplannerModes.MOVE);
         }
       }
+
+      // DEV: Must come after `delete` check as that changes mode to MOVE
+      // multiselect
+      if (this.mode == floorplannerModes.MOVE) {
+        this.overlay = {
+          startX: this.mouseX,
+          startY: this.mouseY,
+          endX: this.mouseX,
+          endY: this.mouseY,
+        };
+        this.view.draw();
+      }
     }
 
     /** */
@@ -228,6 +243,10 @@ module BP3D.Floorplanner {
           this.activeWall.snapToAxis(snapTolerance);
           this.lastX = this.rawMouseX;
           this.lastY = this.rawMouseY;
+        } else {
+          // multiselect
+          this.overlay.endX = this.mouseX;
+          this.overlay.endY = this.mouseY;
         }
         this.view.draw();
       }
@@ -256,6 +275,9 @@ module BP3D.Floorplanner {
         } else if (this.activeWall) {
           this.activeWall.start.mergeWithIntersected();
           this.activeWall.end.mergeWithIntersected();
+        } else {
+          this.overlay = null;
+          this.view.draw();
         }
       }
     }
@@ -263,6 +285,7 @@ module BP3D.Floorplanner {
     /** */
     private mouseleave() {
       this.mouseDown = false;
+      this.overlay = null;
       //scope.setMode(scope.modes.MOVE);
     }
 
