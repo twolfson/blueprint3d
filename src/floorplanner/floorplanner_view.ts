@@ -297,11 +297,15 @@ module BP3D.Floorplanner {
       this.setTextLabelStyles();
       this.context.fillStyle = label.background;
       // TODO: We might need to convert x/y here...
-      this.context.fillRect(label.x, label.y, label.getWidth(), label.getHeight());
+      this.context.fillRect(
+        this.viewmodel.convertX(label.x),
+        this.viewmodel.convertY(label.y), label.getWidth(), label.getHeight());
 
       // Draw our text
       this.context.fillStyle = label.color;
-      this.context.fillText(label.text, label.getCenterX(), label.getCenterY());
+      this.context.fillText(label.text,
+        this.viewmodel.convertX(label.getCenterX()),
+        this.viewmodel.convertY(label.getCenterY()));
     }
 
     /** */

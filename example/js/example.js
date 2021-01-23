@@ -108,8 +108,8 @@ $(document).ready(function() {
   // Define our custom text labels
   window.floorplanner = blueprint3d.floorplanner;
   blueprint3d.model.floorplan.newTextLabel(
-    100,
-    200,
+    204.85,
+    289.052,
     'Room 1',
     '#0084ce',
     '#FFF');
