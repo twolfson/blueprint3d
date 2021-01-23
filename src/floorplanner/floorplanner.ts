@@ -176,6 +176,7 @@ module BP3D.Floorplanner {
           startY: this.mouseY,
           endX: this.mouseX,
           endY: this.mouseY,
+          walls: [],
         };
         this.view.draw();
       }

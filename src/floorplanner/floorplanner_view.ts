@@ -122,7 +122,8 @@ module BP3D.Floorplanner {
 
     /** */
     private drawWall(wall: Model.Wall) {
-      var hover = (wall === this.viewmodel.activeWall);
+      var hover = (wall === this.viewmodel.activeWall) ||
+        (this.viewmodel.overlay && this.viewmodel.overlay.walls.includes(wall));
       var color = wallColor;
       if (hover && this.viewmodel.mode == floorplannerModes.DELETE) {
         color = deleteColor;
