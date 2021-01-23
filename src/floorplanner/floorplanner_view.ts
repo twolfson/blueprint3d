@@ -282,14 +282,20 @@ module BP3D.Floorplanner {
     /** */
     private drawTextLabel(label) {
       this.context.font = "normal 12px Arial";
-      this.context.fillStyle = "#000000";
+      this.context.fillStyle = label.color;
       this.context.textBaseline = "middle";
-      this.context.textAlign = "center";
+      this.context.textAlign = "left";
       this.context.lineWidth = 4;
 
       this.context.fillText(label.text,
         this.viewmodel.convertX(label.x),
         this.viewmodel.convertY(label.y));
+
+      // console.log(this.context.measureText(label.text));
+      this.context.fillRect(
+        this.viewmodel.convertX(label.x)
+        this.viewmodel.convertY(label.y),
+        2, 2);
     }
 
     /** */

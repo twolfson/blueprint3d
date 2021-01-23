@@ -175,7 +175,7 @@ module BP3D.Model {
         y: 200,
         text: 'foo',
         background: 'red',
-        color: 'white',
+        color: 'green',
       }];
     }
 
