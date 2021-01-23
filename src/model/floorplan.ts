@@ -189,15 +189,25 @@ module BP3D.Model {
 
     // TODO: Explore using linePolygonIntersect
     // TODO: Break out intersect call into `model/Wall`?
+    // TODO: Reconsider storing overlay data as x1/y1/x2/y2, maybe do all 4 corners like they like...
     public containedWalls(x1: number, y1: number, x2: number, y2: number, tolerance?: number): Wall[] {
       tolerance = tolerance || defaultFloorPlanTolerance;
-      var containedWalls = [this.walls[1], this.walls[2]];
+      var containedWalls = [];
       // linePolygonIntersect
-      // for (var i = 0; i < this.walls.length; i++) {
-      //   if (this.walls[i].overlapAmount(x1, y1, x2, y2) < tolerance) {
-      //     containedWalls.push(this.walls[i]);
-      //   }
-      // }
+      var corners = [
+        {x: x1, y: y1},
+        {x: x2, y: y1},
+        {x: x2, y: y2},
+        {x: x1, y: y2},
+      ];
+      for (var i = 0; i < this.walls.length; i++) {
+        if (Core.Utils.linePolygonIntersect(
+            this.walls[i].getStartX(), this.walls[i].getStartY(),
+            this.walls[i].getEndX(), this.walls[i].getEndY(),
+            corners)) {
+          containedWalls.push(this.walls[i]);
+        }
+      }
       return containedWalls;
     }
 
