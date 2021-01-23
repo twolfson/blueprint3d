@@ -11,4 +11,5 @@ bin
 doc
 dist
 example/js/blueprint3d.js
+example/js/blueprint3d.js.map
 example/js/three.min.js

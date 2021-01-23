@@ -4,7 +4,7 @@
         "declaration": false,
         "sourceMap": true,
         "removeComments": false,
-        "outFile": "tmp.js"
+        "outFile": "example/js/blueprint3d.js"
     },
     "files": [
         "src/blueprint3d.ts"
