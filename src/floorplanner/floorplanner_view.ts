@@ -281,24 +281,34 @@ module BP3D.Floorplanner {
 
     /** */
     private drawTextLabel(label) {
+      // Configure out text
       this.context.font = "normal 12px Arial";
-      this.context.fillStyle = label.color;
       this.context.textBaseline = "middle";
       this.context.textAlign = "center";
-      this.context.lineWidth = 4;
 
+      // Draw our box background
       var x = this.viewmodel.convertX(label.x);
       var y = this.viewmodel.convertY(label.y);
-      this.context.fillText(label.text, x, y);
-
       // {width: 16.66, actualBoundingBoxLeft: 8.33, actualBoundingBoxRight: 8.66,
       //  actualBoundingBoxAscent: 5.69, actualBoundingBoxDescent: 3.30}
       var textInfo = this.context.measureText(label.text);
-      this.context.fillStyle = '#FF00FF';
-      this.context.fillRect(x - textInfo.actualBoundingBoxLeft, y - textInfo.actualBoundingBoxAscent, 3, 3);
-      this.context.fillRect(x + textInfo.actualBoundingBoxRight, y - textInfo.actualBoundingBoxAscent, 3, 3);
-      this.context.fillRect(x + textInfo.actualBoundingBoxRight, y + textInfo.actualBoundingBoxDescent, 3, 3);
-      this.context.fillRect(x - textInfo.actualBoundingBoxLeft, y + textInfo.actualBoundingBoxDescent, 3, 3);
+      var textLabelPadding = 5;
+      this.context.fillStyle = label.background;
+      this.context.fillRect(
+        x - textInfo.actualBoundingBoxLeft - textLabelPadding, y - textInfo.actualBoundingBoxAscent - textLabelPadding,
+        textInfo.actualBoundingBoxLeft + textInfo.actualBoundingBoxRight + textLabelPadding*2,
+        textInfo.actualBoundingBoxAscent + textInfo.actualBoundingBoxDescent + textLabelPadding*2);
+
+      // Debug content for text bounds
+      // this.context.fillStyle = '#FF00FF';
+      // this.context.fillRect(x - textInfo.actualBoundingBoxLeft, y - textInfo.actualBoundingBoxAscent, 3, 3);
+      // this.context.fillRect(x + textInfo.actualBoundingBoxRight, y - textInfo.actualBoundingBoxAscent, 3, 3);
+      // this.context.fillRect(x + textInfo.actualBoundingBoxRight, y + textInfo.actualBoundingBoxDescent, 3, 3);
+      // this.context.fillRect(x - textInfo.actualBoundingBoxLeft, y + textInfo.actualBoundingBoxDescent, 3, 3);
+
+      // Draw our text
+      this.context.fillStyle = label.color;
+      this.context.fillText(label.text, x, y);
     }
 
     /** */
