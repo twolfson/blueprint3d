@@ -167,6 +167,18 @@ module BP3D.Model {
       return this.rooms;
     }
 
+    /** */
+    // TODO: Add type for content we're returning
+    public getTextLabels() {
+      return [{
+        x: 100,
+        y: 200,
+        text: 'foo',
+        background: 'red',
+        color: 'white',
+      }];
+    }
+
     public overlappedCorner(x: number, y: number, tolerance?: number): Corner {
       tolerance = tolerance || defaultFloorPlanTolerance;
       for (var i = 0; i < this.corners.length; i++) {

@@ -102,7 +102,13 @@ module BP3D.Floorplanner {
         this.drawWallLabels(wall);
       });
 
-      this.drawOverlay(this.viewmodel.overlay);
+      if (this.viewmodel.overlay) {
+        this.drawOverlay(this.viewmodel.overlay);
+      }
+
+      this.floorplan.getTextLabels().forEach((label) => {
+        this.drawTextLabel(label);
+      });
     }
 
     /** */
@@ -260,19 +266,30 @@ module BP3D.Floorplanner {
 
     /** */
     private drawOverlay(overlay) {
-      if (this.viewmodel.overlay) {
-        this.drawRectangle(
-          this.viewmodel.convertX(overlay.startX),
-          this.viewmodel.convertY(overlay.startY),
-          this.viewmodel.convertX(overlay.endX),
-          this.viewmodel.convertY(overlay.endY),
-          true /* fill */,
-          '#0000FF30',
-          true /* stroke */,
-          '#0000FF60',
-          2
-        );
-      }
+      this.drawRectangle(
+        this.viewmodel.convertX(overlay.startX),
+        this.viewmodel.convertY(overlay.startY),
+        this.viewmodel.convertX(overlay.endX),
+        this.viewmodel.convertY(overlay.endY),
+        true /* fill */,
+        '#0000FF30',
+        true /* stroke */,
+        '#0000FF60',
+        2
+      );
+    }
+
+    /** */
+    private drawTextLabel(label) {
+      this.context.font = "normal 12px Arial";
+      this.context.fillStyle = "#000000";
+      this.context.textBaseline = "middle";
+      this.context.textAlign = "center";
+      this.context.lineWidth = 4;
+
+      this.context.fillText(label.text,
+        this.viewmodel.convertX(label.x),
+        this.viewmodel.convertY(label.y));
     }
 
     /** */
