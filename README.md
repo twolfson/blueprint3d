@@ -2,7 +2,10 @@ Changelog:
 
 All `git tag` prefixed with `twolfson` for isolation
 
-- 1.1.0 - Added multiselect support for walls
+- twolfson-1.1.1 - Cleaned development workflow
+    - Moved to `tsc` for watch support
+    - Removed old/unused dependencies
+- twolfson-1.1.0 - Added multiselect support for walls
     - *Note:* Done rather quickly/sloppily, can be built in a much more performant way, but we're exploring UX as current priority
     - Select middle of an edge
     - Select corner of an edge
@@ -19,7 +22,7 @@ All `git tag` prefixed with `twolfson` for isolation
         - Moves relevant walls/corners
         - Merges relevant walls/corners
     - Bonus: Hovering a selected wall still grows bigger
-- 1.0.0 - Customized repo to make it usable for our needs
+- twolfson-1.0.0 - Customized repo to make it usable for our needs
     - Removed a lot of example UI
     - Disabled panning
     - Updated corners/walls to only merge on drag stop
