@@ -1,15 +1,14 @@
 {
     "compilerOptions": {
-        "target": "ES6",
-        "declaration": true,
+        "target": "es6",
+        "declaration": false,
         "sourceMap": true,
         "removeComments": false,
-        
-        "module": "commonjs",
-        "noImplicitAny": false,
-        "outDir": "built",
-        "rootDir": "."
+        "outFile": "tmp.js"
     },
+    "files": [
+        "src/blueprint3d.ts"
+    ],
     "exclude": [
         "node_modules"
     ]
