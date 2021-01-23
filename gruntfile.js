@@ -2,26 +2,18 @@ module.exports = function (grunt) {
 
   require("matchdep").filterAll("grunt-*").forEach(grunt.loadNpmTasks);
 
-  var globalConfig = {
-    moduleName: "blueprint3d",
-    sources: ["src/*.ts", "src/*/*.ts"],
-    outDir: "dist",
-    docDir: "doc",
-    exampleDir: "example/js/"
-  };
-
   var configuration = {
   };
 
   configuration.copy = {};
-  configuration.copy[globalConfig.moduleName] = {
-    src: globalConfig.outDir + "/" + globalConfig.moduleName + ".js",
-    dest: globalConfig.exampleDir + "/" + globalConfig.moduleName + ".js"
+  configuration.copy['blueprint3d'] = {
+    src: 'dist' + "/" + 'blueprint3d' + ".js",
+    dest: 'example/js' + "/" + 'blueprint3d' + ".js"
   };
 
   configuration.copy.threejs = {
     src: "node_modules/three/three.min.js",
-    dest: globalConfig.exampleDir + "/three.min.js"
+    dest: 'example/js' + "/three.min.js"
   }
 
   configuration.typescript = {
@@ -32,16 +24,16 @@ module.exports = function (grunt) {
       removeComments: false
     }
   };
-  configuration.typescript[globalConfig.moduleName] = {
-    src: globalConfig.sources,
-    dest: globalConfig.outDir + "/" + globalConfig.moduleName + ".js"
+  configuration.typescript['blueprint3d'] = {
+    src: ["src/*.ts", "src/*/*.ts"],
+    dest: 'dist' + "/" + 'blueprint3d' + ".js"
   };
 
   grunt.initConfig(configuration);
 
   grunt.registerTask("default", [
-    "typescript:" + globalConfig.moduleName
+    "typescript:" + 'blueprint3d'
     "copy:threejs",
-    "copy:" + globalConfig.moduleName
+    "copy:" + 'blueprint3d'
   ]);
 };
