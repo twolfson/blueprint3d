@@ -50,6 +50,9 @@ module BP3D.Floorplanner {
     private modeResetCallbacks = $.Callbacks();
 
     /** */
+    private containerElement;
+
+    /** */
     private canvasElement;
 
     /** */
@@ -86,8 +89,9 @@ module BP3D.Floorplanner {
     private pixelsPerCm: number;
 
     /** */
-    constructor(canvas: string, private floorplan: Model.Floorplan) {
+    constructor(container: string, canvas: string, private floorplan: Model.Floorplan) {
 
+      this.containerElement = $("#" + container);
       this.canvasElement = $("#" + canvas);
 
       this.view = new FloorplannerView(this.floorplan, this, canvas);
@@ -108,13 +112,13 @@ module BP3D.Floorplanner {
       this.canvasElement.mousedown(() => {
         scope.mousedown();
       });
-      this.canvasElement.mousemove((event) => {
+      this.containerElement.mousemove((event) => {
         scope.mousemove(event);
       });
-      this.canvasElement.mouseup(() => {
+      this.containerElement.mouseup(() => {
         scope.mouseup();
       });
-      this.canvasElement.mouseleave(() => {
+      this.containerElement.mouseleave(() => {
         scope.mouseleave();
       });
 

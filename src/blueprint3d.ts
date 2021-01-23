@@ -14,6 +14,9 @@ module BP3D {
     threeCanvasElement? : string;
 
     /** */
+    containerElement?: string;
+    
+    /** */
     floorplannerElement?: string;
 
     /** The texture directory. */
@@ -34,7 +37,7 @@ module BP3D {
      */
     constructor(options: Options) {
       this.model = new Model.Model(options.textureDir);
-      this.floorplanner = new Floorplanner.Floorplanner(options.floorplannerElement, this.model.floorplan);
+      this.floorplanner = new Floorplanner.Floorplanner(options.containerElement, options.floorplannerElement, this.model.floorplan);
     }
   }
 }

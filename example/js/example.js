@@ -85,6 +85,7 @@ $(document).ready(function() {
 
   // main setup
   var opts = {
+    containerElement: 'floorplanner',
     floorplannerElement: 'floorplanner-canvas',
     threeElement: '#viewer',
     threeCanvasElement: 'three-canvas',
