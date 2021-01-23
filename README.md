@@ -12,6 +12,21 @@ Adjustments:
 - [ ] Remove `jQuery` - Used for event listeners, `classList` manipulation, and offset handling
 - [ ] Add `destroy` cleanup logic (e.g. unbinding DOM listeners, possibly emptying callbacks (might be unnecessary))
 - [ ] Fix up quick yet inefficient decisions when adding multiselect (e.g. better iteration of multiple corners of walls, figuring out alternatives to selecting subsets (could use fixed length arrays as bitfields))
+- [ ] Review code via a diff for sanity check of any missed multiselect tasks/edge cases
+    - [x] Select middle of an edge
+    - [x] Select corner of an edge
+    - [x] Select multiple edges
+    - [ ] Mouse leaving terminates overlay (as we can't guarnatee knowing mouse state on return)
+    - [ ] Clicking on another edge deselects content
+        - [ ] Hover preview
+        - [ ] Actual movement
+    - [ ] Clicking on a corner deselects content
+        - [ ] Hover preview
+        - [ ] Actual movement
+    - [ ] Switching modes cancels multiselect
+    - [x] Clicking + dragging multiselect content
+        - [x] Moves relevant walls/corners
+        - [xx] Merges relevant walls/corners
 
 ---
 
