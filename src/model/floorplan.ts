@@ -5,6 +5,7 @@
 /// <reference path="corner.ts" />
 /// <reference path="room.ts" />
 /// <reference path="half_edge.ts" />
+/// <reference path="text_label.ts" />
 
 module BP3D.Model {
   /** */
@@ -23,6 +24,9 @@ module BP3D.Model {
 
     /** */
     private rooms: Room[] = [];
+
+    /** */
+    private textLabels: TextLabel[] = [];
 
     /** */
     private new_wall_callbacks = $.Callbacks();
@@ -152,6 +156,14 @@ module BP3D.Model {
       Core.Utils.removeValue(this.corners, corner);
     }
 
+    // DEV: Text labels are meant to be preset by our container
+    //   so no need for remove functionality
+    public newTextLabel(x: number, y: number, id?: string): TextLabel {
+      var textLabel = new TextLabel(this, x, y, id);
+      this.textLabels.push(textLabel);
+      return textLabel;
+    }
+
     /** Gets the walls. */
     public getWalls(): Wall[] {
       return this.walls;
@@ -168,15 +180,8 @@ module BP3D.Model {
     }
 
     /** */
-    // TODO: Add type for content we're returning
-    public getTextLabels() {
-      return [{
-        x: 100,
-        y: 200,
-        text: 'Room 1',
-        background: '#0084ce',
-        color: '#FFF',
-      }];
+    public getTextLabels(): TextLabel[] {
+      return this.textLabels;
     }
 
     public overlappedCorner(x: number, y: number, tolerance?: number): Corner {
@@ -276,6 +281,13 @@ module BP3D.Model {
       if ('newFloorTextures' in floorplan) {
         this.floorTextures = floorplan.newFloorTextures;
       }
+
+      // TODO: Add back `textLabels` parsing
+      // if ('textLabels' in floorplan) {
+      //   this.textLabels.forEach((textLabelData) => {
+      //     this.newTextLabel(textLabelData);
+      //   });
+      // }
 
       this.update();
       this.roomLoadedCallbacks.fire();
