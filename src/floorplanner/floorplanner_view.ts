@@ -282,7 +282,7 @@ module BP3D.Floorplanner {
     /** */
     private drawTextLabel(label) {
       // Configure out text
-      this.context.font = "normal 12px Arial";
+      this.context.font = "normal 12.8px Arial";
       this.context.textBaseline = "middle";
       this.context.textAlign = "center";
 
@@ -292,12 +292,13 @@ module BP3D.Floorplanner {
       // {width: 16.66, actualBoundingBoxLeft: 8.33, actualBoundingBoxRight: 8.66,
       //  actualBoundingBoxAscent: 5.69, actualBoundingBoxDescent: 3.30}
       var textInfo = this.context.measureText(label.text);
-      var textLabelPadding = 5;
+      var textLabelPadding = 4;
+      var lineHeight = 19.2;
       this.context.fillStyle = label.background;
       this.context.fillRect(
-        x - textInfo.actualBoundingBoxLeft - textLabelPadding, y - textInfo.actualBoundingBoxAscent - textLabelPadding,
+        x - textInfo.actualBoundingBoxLeft - textLabelPadding, y - lineHeight/2 - textLabelPadding,
         textInfo.actualBoundingBoxLeft + textInfo.actualBoundingBoxRight + textLabelPadding*2,
-        textInfo.actualBoundingBoxAscent + textInfo.actualBoundingBoxDescent + textLabelPadding*2);
+        lineHeight + textLabelPadding*2);
 
       // Debug content for text bounds
       // this.context.fillStyle = '#FF00FF';

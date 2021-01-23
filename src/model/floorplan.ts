@@ -173,9 +173,9 @@ module BP3D.Model {
       return [{
         x: 100,
         y: 200,
-        text: 'foo',
-        background: 'red',
-        color: 'white',
+        text: 'Room 1',
+        background: '#0084ce',
+        color: '#FFF',
       }];
     }
 
