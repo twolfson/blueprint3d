@@ -176,9 +176,13 @@ module BP3D.Floorplanner {
           this.floorplan.newWall(this.lastNode, corner);
         }
         if (corner.mergeWithIntersected() && this.lastNode != null) {
-          this.setMode(floorplannerModes.MOVE);
+          // Normally would return to move when complete a loop
+          // this.setMode(floorplannerModes.MOVE);
+          // Instead, let's stay drawing but just closed the loop
+          this.lastNode = null;
+        } else {
+          this.lastNode = corner;
         }
-        this.lastNode = corner;
       }
 
       // delete
