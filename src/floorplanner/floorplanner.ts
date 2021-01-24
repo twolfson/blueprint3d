@@ -215,6 +215,7 @@ module BP3D.Floorplanner {
             endY: this.mouseY,
           };
           this.selectedWalls = null;
+          this.selectedTextLabels = null;
         }
         this.view.draw();
       }
@@ -396,6 +397,7 @@ module BP3D.Floorplanner {
       if (this.overlay) {
         this.overlay = null;
         this.selectedWalls = null;
+        this.selectedTextLabels = null;
       }
       //scope.setMode(scope.modes.MOVE);
       this.view.draw();
@@ -418,6 +420,7 @@ module BP3D.Floorplanner {
     private setMode(mode: number) {
       this.lastNode = null;
       this.selectedWalls = null;
+      this.selectedTextLabels = null;
       this.mode = mode;
       this.modeResetCallbacks.fire(mode);
       this.updateTarget();

@@ -52,8 +52,9 @@ Backlog:
 - [ ] Implement loading/serialization for text labels
 - [ ] Implement draggable + selectable for text labels
     - [ ] Hover selected shows deselect
-    - [ ] Deselect on other selection
-    - [ ] Move all items on drag
+    - [x] Deselect on other selection
+    - [x] Move all items on drag
+
 ---
 
 ## See it
