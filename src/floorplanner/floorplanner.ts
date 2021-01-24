@@ -341,6 +341,9 @@ module BP3D.Floorplanner {
           this.selectedWalls = this.floorplan.containedWalls(
             this.overlay.startX, this.overlay.startY,
             this.overlay.endX, this.overlay.endY);
+          this.selectedTextLabels = this.floorplan.containedTextLabels(
+            this.overlay.startX, this.overlay.startY,
+            this.overlay.endX, this.overlay.endY);
         }
         this.view.draw();
       }

@@ -217,23 +217,62 @@ module BP3D.Model {
 
     public containedWalls(startX: number, startY: number, endX: number, endY: number): Wall[] {
       var containedWalls = [];
+      var corners = [
+        {x: startX, y: startY},
+        {x: endX, y: startY},
+        {x: endX, y: endY},
+        {x: startX, y: endY},
+      ];
       for (var i = 0; i < this.walls.length; i++) {
         var wall = this.walls[i];
         if (Core.Utils.linePolygonIntersect(
               wall.getStartX(), wall.getStartY(),
               wall.getEndX(), wall.getEndY(),
-              [
-                {x: startX, y: startY},
-                {x: endX, y: startY},
-                {x: endX, y: endY},
-                {x: startX, y: endY},
-              ]) ||
+              corners) ||
             Core.Utils.pointInRectangle(wall.getStartX(), wall.getStartY(), startX, startY, endX, endY) ||
             Core.Utils.pointInRectangle(wall.getEndX(),   wall.getEndY(),   startX, startY, endX, endY)) {
           containedWalls.push(this.walls[i]);
         }
       }
       return containedWalls;
+    }
+
+    public containedTextLabels(startX: number, startY: number, endX: number, endY: number): Wall[] {
+      var containedTextLabels = [];
+      var corners = [
+        {x: startX, y: startY},
+        {x: endX, y: startY},
+        {x: endX, y: endY},
+        {x: startX, y: endY},
+      ];
+      for (var i = 0; i < this.textLabels.length; i++) {
+        var textLabel = this.textLabels[i];
+        // DEV: Polygon/polygon intersect would be easier but I'm not in the mood to determine if that function works/not
+        // DEV: Same with polygon in polygon, which we had issues with for `containedWalls`
+        if (Core.Utils.linePolygonIntersect(
+              textLabel.x, textLabel.y, // Top-left
+              textLabel.x + textLabel.getWidth(), textLabel.y, // Top-right
+              corners) ||
+            Core.Utils.linePolygonIntersect(
+              textLabel.x + textLabel.getWidth(), textLabel.y, // Top-right
+              textLabel.x + textLabel.getWidth(), textLabel.y + textLabel.getHeight(), // Bottom-right
+              corners) ||
+            Core.Utils.linePolygonIntersect(
+              textLabel.x + textLabel.getWidth(), textLabel.y + textLabel.getHeight(), // Bottom-right
+              textLabel.x, textLabel.y + textLabel.getHeight(), // Bottom-left
+              corners) ||
+            Core.Utils.linePolygonIntersect(
+              textLabel.x, textLabel.y + textLabel.getHeight(), // Bottom-left
+              textLabel.x, textLabel.y, // Top-left
+              corners) ||
+            Core.Utils.pointInRectangle(textLabel.x, textLabel.y, startX, startY, endX, endY) || // Top-left
+            Core.Utils.pointInRectangle(textLabel.x + textLabel.getWidth(), textLabel.y, startX, startY, endX, endY) || // Top-right
+            Core.Utils.pointInRectangle(textLabel.x + textLabel.getWidth(), textLabel.y + textLabel.getHeight(), startX, startY, endX, endY) || // Bottom-right
+            Core.Utils.pointInRectangle(textLabel.x, textLabel.y + textLabel.getHeight(), startX, startY, endX, endY)) { // Bottom-left
+          containedTextLabels.push(this.textLabels[i]);
+        }
+      }
+      return containedTextLabels;
     }
 
     // import and export -- cleanup
