@@ -183,8 +183,9 @@ module BP3D.Floorplanner {
       // multiselect
       if (this.mode == floorplannerModes.MOVE) {
         // If we have a target
-        if (this.activeCorner || this.activeWall) {
+        if (this.activeCorner || this.activeWall || this.activeTextLabel) {
           // If the target isn't in our selection, then remove our selection
+          // TODO: Add `textLabel` as part of this check
           if (this.selectedWalls && !this.selectedWalls.includes(this.activeWall)) {
             this.selectedWalls = null;
           }
@@ -273,6 +274,7 @@ module BP3D.Floorplanner {
       if (this.mode == floorplannerModes.MOVE && this.mouseDown) {
         // If we have a selection, move that
         // DEV: Selection will become deselected on mouse down
+        // TODO: Add selected text label as part of this check
         if (!this.overlay && this.selectedWalls) {
           var seenCorners = new Set();
           this.selectedWalls.forEach((wall) => {
@@ -297,6 +299,14 @@ module BP3D.Floorplanner {
         } else if (this.activeCorner) {
           this.activeCorner.move(this.mouseX, this.mouseY);
           this.activeCorner.snapToAxis(snapTolerance);
+        // Otherwise, if our target is a text label
+        } else if (this.activeTextLabel) {
+          this.activeTextLabel.relativeMove(
+            (this.rawMouseX - this.lastX) * this.cmPerPixel,
+            (this.rawMouseY - this.lastY) * this.cmPerPixel
+          );
+          this.lastX = this.rawMouseX;
+          this.lastY = this.rawMouseY;
         // Otherwise, if our target is a wall
         } else if (this.activeWall) {
           this.activeWall.relativeMove(
