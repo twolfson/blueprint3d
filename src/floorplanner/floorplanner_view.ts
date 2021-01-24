@@ -295,7 +295,8 @@ module BP3D.Floorplanner {
 
     private drawTextLabel(label) {
       // Draw our box background
-      var hover = (label === this.viewmodel.activeTextLabel);
+      var activeTextLabel = this.viewmodel.activeTextLabel;
+      var hover = (label === activeTextLabel);
       var selected = (this.viewmodel.selectedTextLabels && this.viewmodel.selectedTextLabels.includes(label));
       this.setTextLabelStyles();
       var pixelsPerCm = Core.Configuration.data['pixelsPerCm'];
@@ -310,6 +311,12 @@ module BP3D.Floorplanner {
         label.background,
         textLabelHoverStroke);
       if (selected) {
+        // If there's an active wall outside of the multiselect, then show deselect
+        var selectedStrokeStyle = label.background;
+        if ((this.viewmodel.activeCorner || this.viewmodel.activeTextLabel ||this.viewmodel.activeWall)
+            && !this.viewmodel.selectedTextLabels.includes(activeTextLabel)) {
+          selectedStrokeStyle = label.background + '66'; // RGB -> RGBA
+        }
         var strokeOffset = 2;
         this.drawRectangle(
           this.viewmodel.convertX(label.x) - strokeOffset,
@@ -319,7 +326,7 @@ module BP3D.Floorplanner {
           false, /* fill */
           null,
           true, /* stroke */
-          label.background,
+          selectedStrokeStyle,
           2);
       }
 
