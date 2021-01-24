@@ -54,7 +54,6 @@ Backlog:
     - [ ] Hover selected shows deselect
     - [ ] Deselect on other selection
     - [ ] Move all items on drag
-
 ---
 
 ## See it

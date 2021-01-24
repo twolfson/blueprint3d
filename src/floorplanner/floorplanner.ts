@@ -291,8 +291,8 @@ module BP3D.Floorplanner {
       if (this.mode == floorplannerModes.MOVE && this.mouseDown) {
         // If we have a selection, move that
         // DEV: Selection will become deselected on mouse down
-        // TODO: Add selected text label as part of this check
-        if (!this.overlay && this.selectedWalls) {
+        if (!this.overlay && (this.selectedWalls || this.selectedTextLabels)) {
+          // Move walls by their corners
           var seenCorners = new Set();
           this.selectedWalls.forEach((wall) => {
             if (!seenCorners.has(wall.start)) {
@@ -309,6 +309,12 @@ module BP3D.Floorplanner {
             }
             seenCorners.add(wall.start);
             seenCorners.add(wall.end);
+          });
+          this.selectedTextLabels.forEach((label) => {
+            label.relativeMove(
+              (this.rawMouseX - this.lastX) * this.cmPerPixel,
+              (this.rawMouseY - this.lastY) * this.cmPerPixel
+            );
           });
           this.lastX = this.rawMouseX;
           this.lastY = this.rawMouseY;
