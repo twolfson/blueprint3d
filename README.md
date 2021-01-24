@@ -2,6 +2,7 @@ Changelog:
 
 All `git tag` prefixed with `twolfson` for isolation
 
+- twolfson-1.2.0 - Added static text labels
 - twolfson-1.1.1 - Cleaned development workflow
     - Moved to `tsc` for watch support
     - Removed old/unused dependencies
