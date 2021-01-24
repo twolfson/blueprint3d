@@ -222,19 +222,31 @@ module BP3D.Floorplanner {
       if (this.mode != floorplannerModes.DRAW && !this.mouseDown) {
         // Determine what we're hovering
         var hoverCorner = this.floorplan.overlappedCorner(this.mouseX, this.mouseY);
-        var hoverWall = this.floorplan.overlappedWall(this.mouseX, this.mouseY);
         var draw = false;
 
         // If our corner has updated, then update it and ignore everything else
         if (hoverCorner != this.activeCorner) {
           this.activeCorner = hoverCorner;
+          this.activeTextLabel = null;
           this.activeWall = null;
           draw = true;
         }
 
-        // If there was no corner
+        // If there is no corner hovered (set via previous logic)
         if (this.activeCorner == null) {
+          // If our text label has updated, then update it and ignore walls
+          var hoverTextLabel = this.floorplan.overlappedTextLabel(this.mouseX, this.mouseY);
+          if (hoverTextLabel != this.activeTextLabel) {
+            this.activeTextLabel = hoverTextLabel;
+            this.activeWall = null;
+            draw = true;
+          }
+        }
+
+        // If there is no corner nor text label hovered (set via previous logic)
+        if (this.activeCorner == null && this.activeTextLabel == null) {
           // If our wall has updated, then update it (and nothing else to ignore -- lowest priority)
+          var hoverWall = this.floorplan.overlappedWall(this.mouseX, this.mouseY);
           if (hoverWall != this.activeWall) {
             this.activeWall = hoverWall;
             draw = true;
