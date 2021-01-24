@@ -22,6 +22,9 @@ module BP3D.Floorplanner {
     public activeCorner = null;
 
     /** */
+    public activeTextLabel = null;
+
+    /** */
     public overlay = null;
 
     /** */
@@ -220,25 +223,31 @@ module BP3D.Floorplanner {
         // Determine what we're hovering
         var hoverCorner = this.floorplan.overlappedCorner(this.mouseX, this.mouseY);
         var hoverWall = this.floorplan.overlappedWall(this.mouseX, this.mouseY);
+        var hoverTextLabel = this.floorplan.overlappedTextLabel(this.mouseX, this.mouseY);
         var draw = false;
 
-        // If our corner has updated, then update it
-        if (hoverCorner != this.activeCorner) {
+        // Update all our targets
+        if (hoverCorner !== this.activeCorner) {
           this.activeCorner = hoverCorner;
           draw = true;
         }
+        if (hoverWall !== this.activeWall) {
+          this.activeWall = hoverWall;
+          draw = true;
+        }
+        if (hoverTextLabel !== this.activeWall) {
+          this.activeTextLabel = hoverTextLabel;
+          draw = true;
+        }
 
-        // If there was no corner
-        // corner takes precendence
-        if (this.activeCorner == null) {
-          // But we have a new wall, then make our wall active
-          if (hoverWall != this.activeWall) {
-            this.activeWall = hoverWall;
-            draw = true;
-          }
-        // Otherwise, ignore the wall (even if there is one)
-        } else {
+        // If there was a corner, ignore everything else
+        if (this.activeCorner) {
           this.activeWall = null;
+        // Otherwise, if there's a text label, ignore walls
+        } else if (this.activeTextLabel) {
+          this.activeWall = null;
+        // Otherwise, if there's a wall, do nothing
+        } else if (this.activeWall) {
         }
 
         // Perform our draw
