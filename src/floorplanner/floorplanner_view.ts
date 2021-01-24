@@ -270,7 +270,7 @@ module BP3D.Floorplanner {
         tmpCorner.x = x;
         tmpCorner.y = y;
         if (tmpCorner.willMergeWithIntersected()) {
-          targetColor = '#00FF00';
+          targetColor = '#000089';
         }
 
         // Draw our line + circle as per normal
