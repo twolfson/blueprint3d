@@ -297,9 +297,12 @@ module BP3D.Floorplanner {
       this.setTextLabelStyles();
       this.context.fillStyle = label.background;
       // TODO: We might need to convert x/y here...
+      var pixelsPerCm = Core.Configuration.data['pixelsPerCm'];
       this.context.fillRect(
         this.viewmodel.convertX(label.x),
-        this.viewmodel.convertY(label.y), label.getWidth(), label.getHeight());
+        this.viewmodel.convertY(label.y),
+        label.getWidth() * pixelsPerCm,
+        label.getHeight() * pixelsPerCm);
 
       // Draw our text
       this.context.fillStyle = label.color;

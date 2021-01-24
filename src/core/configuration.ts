@@ -1,5 +1,9 @@
 /// <reference path="dimensioning.ts" />
 
+var cmPerFoot = 30.48;
+var pixelsPerFoot = 15.0;
+var cmPerPixel = cmPerFoot * (1.0 / pixelsPerFoot);
+
 module BP3D.Core {
   // GENERAL:
 
@@ -17,11 +21,16 @@ module BP3D.Core {
   /** Global configuration to customize the whole system.  */
   export class Configuration {
     /** Configuration data loaded from/stored to extern. */
-    private static data: {[key: string]: any} = {
+    public static data: {[key: string]: any} = {
       dimUnit: dimInch,
 
       wallHeight: 250,
-      wallThickness: 10
+      wallThickness: 10,
+
+      cmPerFoot: cmPerFoot,
+      pixelsPerFoot: pixelsPerFoot,
+      cmPerPixel: cmPerPixel,
+      pixelsPerCm: 1.0 / cmPerPixel
     };
 
     /** Set a configuration parameter. */

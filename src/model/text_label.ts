@@ -1,12 +1,14 @@
+/// <reference path="../core/configuration.ts" />
 /// <reference path="../core/utils.ts" />
 
 declare interface Window { floorplanner: any }
 
+
 module BP3D.Model {
   export class TextLabel {
-    public textDimensions;
-    public padding = 4;
-    public lineHeight = 19.2;
+    public textDimensionsPx;
+    public padding = 4 * Core.Configuration.data['cmPerPixel'];
+    public lineHeight = 19.2 * Core.Configuration.data['cmPerPixel'];
 
     constructor(private floorplan: Floorplan,
         public x: number, public y: number,
@@ -20,14 +22,17 @@ module BP3D.Model {
       this.text = text;
       // {width: 16.66, actualBoundingBoxLeft: 8.33, actualBoundingBoxRight: 8.66,
       //  actualBoundingBoxAscent: 5.69, actualBoundingBoxDescent: 3.30}
-      this.textDimensions = floorplanner.view.computeTextDimensions(this.text);
+      this.textDimensionsPx = floorplanner.view.computeTextDimensions(this.text);
       this.background = background;
       this.color = color;
     }
 
     public getWidth(): number {
-      var info = this.textDimensions;
-      return info.actualBoundingBoxLeft + info.actualBoundingBoxRight + this.padding*2;
+      var infoPx = this.textDimensionsPx;
+      var cmPerPixel = Core.Configuration.data['cmPerPixel'];
+      return (infoPx.actualBoundingBoxLeft * cmPerPixel) +
+             (infoPx.actualBoundingBoxRight * cmPerPixel) +
+             this.padding*2;
     }
     public getHeight(): number {
       return this.lineHeight + this.padding*2;
