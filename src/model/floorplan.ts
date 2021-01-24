@@ -284,12 +284,11 @@ module BP3D.Model {
         this.floorTextures = floorplan.newFloorTextures;
       }
 
-      // TODO: Add back `textLabels` parsing
-      // if ('textLabels' in floorplan) {
-      //   this.textLabels.forEach((textLabelData) => {
-      //     this.newTextLabel(textLabelData);
-      //   });
-      // }
+      if ('textLabels' in floorplan) {
+        this.textLabels.forEach((textLabelData) => {
+          this.newTextLabel(textLabelData);
+        });
+      }
 
       this.update();
       this.roomLoadedCallbacks.fire();
