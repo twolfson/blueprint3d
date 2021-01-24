@@ -32,6 +32,7 @@ module BP3D.Floorplanner {
   const edgeColor = "#888888"
   const edgeColorHover = "#008cba"
   const edgeWidth = 1
+  const textLabelHoverStroke = 5
 
   const deselectColor = "#90b6d9";
   const deleteColor = "#ff0000";
@@ -294,14 +295,19 @@ module BP3D.Floorplanner {
 
     private drawTextLabel(label) {
       // Draw our box background
+      var hover = (label === this.viewmodel.activeTextLabel);
       this.setTextLabelStyles();
-      this.context.fillStyle = label.background;
       var pixelsPerCm = Core.Configuration.data['pixelsPerCm'];
-      this.context.fillRect(
+      this.drawRectangle(
         this.viewmodel.convertX(label.x),
         this.viewmodel.convertY(label.y),
-        label.getWidth() * pixelsPerCm,
-        label.getHeight() * pixelsPerCm);
+        this.viewmodel.convertX(label.x) + label.getWidth() * pixelsPerCm,
+        this.viewmodel.convertY(label.y) + label.getHeight() * pixelsPerCm,
+        true, /* fill */
+        label.background,
+        hover, /* stroke */
+        label.background,
+        textLabelHoverStroke);
 
       // Draw our text
       this.context.fillStyle = label.color;
