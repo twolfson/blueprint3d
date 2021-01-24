@@ -1,50 +1,44 @@
-/// <reference path="model/model.ts" />
-/// <reference path="floorplanner/floorplanner.ts" />
+import { Model } from "./model/model";
+import { Floorplanner } from "./floorplanner/floorplanner";
 
-console.log('aaa');
+/** Startup options. */
+export interface Options {
+  /** */
+  widget?: boolean;
 
-import * as Model from "./model/model";
+  /** */
+  threeElement?: string;
 
-namespace BP3D {
-  /** Startup options. */
-  export interface Options {
-    /** */
-    widget?: boolean;
+  /** */
+  threeCanvasElement? : string;
 
-    /** */
-    threeElement?: string;
+  /** */
+  containerElement?: string;
+  
+  /** */
+  floorplannerElement?: string;
 
-    /** */
-    threeCanvasElement? : string;
+  /** The texture directory. */
+  textureDir?: string;
+}
 
-    /** */
-    containerElement?: string;
-    
-    /** */
-    floorplannerElement?: string;
+/** Blueprint3D core application. */
+export class Blueprint3d {
+  
+  private model: Model;
 
-    /** The texture directory. */
-    textureDir?: string;
-  }
+  private three: any; // Three.Main;
 
-  /** Blueprint3D core application. */
-  export class Blueprint3d {
-    
-    private model: Model.Model;
+  private floorplanner: Floorplanner;
 
-    private three: any; // Three.Main;
-
-    private floorplanner: Floorplanner.Floorplanner;
-
-    /** Creates an instance.
-     * @param options The initialization options.
-     */
-    constructor(options: Options) {
-      this.model = new Model.Model(options.textureDir);
-      this.floorplanner = new Floorplanner.Floorplanner(options.containerElement, options.floorplannerElement, this.model.floorplan);
-    }
+  /** Creates an instance.
+   * @param options The initialization options.
+   */
+  constructor(options: Options) {
+    this.model = new Model(options.textureDir);
+    this.floorplanner = new Floorplanner(options.containerElement, options.floorplannerElement, this.model.floorplan);
   }
 }
 
-declare interface Window { BP3D: any }
-window.BP3D = BP3D;
+declare interface Window { Blueprint3d: any }
+window.Blueprint3d = Blueprint3d;
