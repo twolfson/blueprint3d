@@ -306,9 +306,20 @@ module BP3D.Floorplanner {
         this.viewmodel.convertY(label.y) + label.getHeight() * pixelsPerCm,
         true, /* fill */
         label.background,
-        hover || selected, /* stroke */
-        selected ? '#45E645' : label.background,
-        hover ? textLabelHoverStroke : 5);
+        hover, /* stroke */
+        label.background,
+        hover);
+      var strokeOffset = 2;
+      this.drawRectangle(
+        this.viewmodel.convertX(label.x) - strokeOffset,
+        this.viewmodel.convertY(label.y) - strokeOffset,
+        this.viewmodel.convertX(label.x) + label.getWidth() * pixelsPerCm + strokeOffset,
+        this.viewmodel.convertY(label.y) + label.getHeight() * pixelsPerCm + strokeOffset,
+        false, /* fill */
+        null,
+        selected, /* stroke */
+        label.background,
+        2);
 
       // Draw our text
       this.context.fillStyle = label.color;
