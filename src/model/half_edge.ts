@@ -1,6 +1,6 @@
 /// <reference path="../../lib/three.d.ts" />
 /// <reference path="../../lib/jquery.d.ts" />
-/// <reference path="../core/utils.ts" />
+import { Utils } from "../core/utils";
 
 module BP3D.Model {
   /**

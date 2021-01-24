@@ -1,5 +1,5 @@
 /// <reference path="../core/configuration.ts" />
-/// <reference path="../core/utils.ts" />
+import { Utils } from "../core/utils";
 
 declare interface Window { floorplanner: any }
 

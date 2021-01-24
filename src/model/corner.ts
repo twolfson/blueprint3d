@@ -1,7 +1,7 @@
 /// <reference path="../../lib/jquery.d.ts" />
-/// <reference path="../core/utils.ts" />
 /// <reference path="floorplan.ts" />
 /// <reference path="wall.ts" />
+import { Utils } from "../core/utils";
 
 module BP3D.Model {
   /** */

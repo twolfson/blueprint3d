@@ -1,11 +1,11 @@
 /// <reference path="../../lib/jquery.d.ts" />
 /// <reference path="../../lib/three.d.ts" />
-/// <reference path="../core/utils.ts" />
 /// <reference path="wall.ts" />
 /// <reference path="corner.ts" />
 /// <reference path="room.ts" />
 /// <reference path="half_edge.ts" />
 /// <reference path="text_label.ts" />
+import { Utils } from "../core/utils";
 
 module BP3D.Model {
   /** */

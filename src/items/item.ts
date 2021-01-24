@@ -1,7 +1,7 @@
 /// <reference path="../../lib/three.d.ts" />
-/// <reference path="../core/utils.ts" />
 /// <reference path="../model/model.ts" />
 /// <reference path="metadata.ts" />
+import { Utils } from "../core/utils";
 
 module BP3D.Items {
   /**
