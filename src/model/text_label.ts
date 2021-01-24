@@ -60,5 +60,11 @@ module BP3D.Model {
       this.x = newX;
       this.y = newY;
     }
+
+    public containsPoint(x: number, y: number): number {
+      return Core.Utils.pointInRectangle(x, y,
+        this.x, this.y,
+        this.x + this.getWidth(), this.y + this.getHeight());
+    }
   }
 }

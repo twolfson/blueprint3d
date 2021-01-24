@@ -206,6 +206,15 @@ module BP3D.Model {
       return null;
     }
 
+    public overlappedTextLabel(x: number, y: number): Wall {
+      for (var i = 0; i < this.textLabels.length; i++) {
+        if (this.textLabels[i].containsPoint(x, y)) {
+          return this.textLabels[i];
+        }
+      }
+      return null;
+    }
+
     public containedWalls(startX: number, startY: number, endX: number, endY: number): Wall[] {
       var containedWalls = [];
       for (var i = 0; i < this.walls.length; i++) {
