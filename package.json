@@ -1,6 +1,6 @@
 {
   "name": "blueprint3d",
-  "version": "twolfson-1.2.0",
+  "version": "0.0.1",
   "description": "",
   "license": "(MIT OR Apache-2.0)",
   "main": "main.js",
@@ -29,8 +29,7 @@
   "private": true,
   "foundry": {
     "releaseCommands": [
-      "foundry-release-git",
-      "foundry-release-npm"
+      "foundry-release-git"
     ]
   }
 }
