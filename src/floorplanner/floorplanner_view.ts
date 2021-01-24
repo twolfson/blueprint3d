@@ -17,6 +17,18 @@ module BP3D.Floorplanner {
     DELETE: 2
   };
 
+  // Interaction styles
+  // - Corner hover: Show target
+  // - Corner select: N/A
+  // - Corner deselect: N/A
+  // - Label hover: Expand width
+  // - Label select: Gapped outline
+  // - Label deselect: Faded outline
+  // - Wall hover: Expand width
+  // - Wall select: Change color
+  // - Wall deselect: Fade color
+  // - Terminate wall: Change color
+
   // grid parameters
   const gridSpacing = 20; // pixels
   const gridWidth = 1;
@@ -37,6 +49,7 @@ module BP3D.Floorplanner {
 
   const deselectColor = "#90b6d9";
   const deleteColor = "#ff0000";
+  const terminateWallColor = "#000000";
 
   // corner config
   const cornerRadius = 0
@@ -270,7 +283,7 @@ module BP3D.Floorplanner {
         tmpCorner.x = x;
         tmpCorner.y = y;
         if (tmpCorner.willMergeWithIntersected()) {
-          targetColor = '#000089';
+          targetColor = terminateWallColor;
         }
 
         // Draw our line + circle as per normal
