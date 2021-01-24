@@ -4,7 +4,7 @@ var cmPerFoot = 30.48;
 var pixelsPerFoot = 15.0;
 var cmPerPixel = cmPerFoot * (1.0 / pixelsPerFoot);
 
-namespace BP3D.Core {
+module BP3D.Core {
   // GENERAL:
 
   /** The dimensioning unit for 2D floorplan measurements. */

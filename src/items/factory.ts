@@ -1,4 +1,4 @@
-namespace BP3D.Items {
+module BP3D.Items {
   /** Enumeration of item types. */
   const item_types = {
   };

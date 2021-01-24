@@ -1,4 +1,4 @@
-namespace BP3D.Core {
+module BP3D.Core {
 
   /** Enumeration of log contexts. */
   export enum ELogContext {

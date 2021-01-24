@@ -7,7 +7,7 @@
 /// <reference path="half_edge.ts" />
 /// <reference path="text_label.ts" />
 
-namespace BP3D.Model {
+module BP3D.Model {
   /** */
   const defaultFloorPlanTolerance = 10.0;
 

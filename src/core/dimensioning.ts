@@ -1,6 +1,6 @@
 /// <reference path="../core/configuration.ts" />
 
-namespace BP3D.Core {
+module BP3D.Core {
 
   /** Dimensioning in Inch. */
   export const dimInch: string = "inch";

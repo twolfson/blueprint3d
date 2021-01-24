@@ -1,11 +1,7 @@
 /// <reference path="model/model.ts" />
 /// <reference path="floorplanner/floorplanner.ts" />
 
-console.log('aaa');
-
-import * as Model from "./model/model";
-
-namespace BP3D {
+module BP3D {
   /** Startup options. */
   export interface Options {
     /** */

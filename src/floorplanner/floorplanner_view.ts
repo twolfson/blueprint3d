@@ -9,7 +9,7 @@
 /// <reference path="../model/wall.ts" />
 /// <reference path="floorplanner.ts" />
 
-namespace BP3D.Floorplanner {
+module BP3D.Floorplanner {
   /** */
   export const floorplannerModes = {
     MOVE: 0,

@@ -1,4 +1,4 @@
-namespace BP3D.Core {
+module BP3D.Core {
 
   /** Collection of utility functions. */
   export class Utils {
