@@ -1,6 +1,8 @@
 /// <reference path="model/model.ts" />
 /// <reference path="floorplanner/floorplanner.ts" />
 
+import './model/model';
+
 module BP3D {
   /** Startup options. */
   export interface Options {
