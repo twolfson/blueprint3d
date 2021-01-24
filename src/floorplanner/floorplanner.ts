@@ -1,4 +1,5 @@
 /// <reference path="../../lib/jquery.d.ts" />
+/// <reference path="../core/configuration.ts" />
 /// <reference path="../model/floorplan.ts" />
 /// <reference path="floorplanner_view.ts" />
 
@@ -96,10 +97,8 @@ module BP3D.Floorplanner {
 
       this.view = new FloorplannerView(this.floorplan, this, canvas);
 
-      var cmPerFoot = 30.48;
-      var pixelsPerFoot = 15.0;
-      this.cmPerPixel = cmPerFoot * (1.0 / pixelsPerFoot);
-      this.pixelsPerCm = 1.0 / this.cmPerPixel;
+      this.cmPerPixel = Core.Configuration.data['cmPerPixel'];
+      this.pixelsPerCm = Core.Configuration.data['pixelsPerCm'];
 
       this.wallWidth = 10.0 * this.pixelsPerCm;
 
