@@ -206,7 +206,7 @@ module BP3D.Model {
       return null;
     }
 
-    public overlappedTextLabel(x: number, y: number): Wall {
+    public overlappedTextLabel(x: number, y: number): TextLabel {
       for (var i = 0; i < this.textLabels.length; i++) {
         if (this.textLabels[i].containsPoint(x, y)) {
           return this.textLabels[i];
@@ -291,12 +291,6 @@ module BP3D.Model {
 
       if ('newFloorTextures' in floorplan) {
         this.floorTextures = floorplan.newFloorTextures;
-      }
-
-      if ('textLabels' in floorplan) {
-        this.textLabels.forEach((textLabelData) => {
-          this.newTextLabel(textLabelData);
-        });
       }
 
       this.update();

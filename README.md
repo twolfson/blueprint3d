@@ -49,7 +49,7 @@ Backlog:
 - [ ] Remove `jQuery` - Used for event listeners, `classList` manipulation, and offset handling
 - [ ] Add `destroy` cleanup logic (e.g. unbinding DOM listeners, possibly emptying callbacks (might be unnecessary))
 - [ ] Fix up quick yet inefficient decisions when adding multiselect (e.g. better iteration of multiple corners of walls, figuring out alternatives to selecting subsets (could use fixed length arrays as bitfields))
-- [ ] Implement serialization for text labels
+- [ ] Implement loading/serialization for text labels
 - [ ] Implement draggable + selectable for text labels
 
 ---
