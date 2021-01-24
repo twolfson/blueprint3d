@@ -242,11 +242,11 @@ module BP3D.Floorplanner {
       this.mouseMoved = true;
 
       // update mouse
-      this.rawMouseX = event.clientX;
-      this.rawMouseY = event.clientY;
+      this.rawMouseX = event.pageX;
+      this.rawMouseY = event.pageY;
 
-      this.mouseX = (event.clientX - this.canvasElement.offset().left) * this.cmPerPixel + this.originX * this.cmPerPixel;
-      this.mouseY = (event.clientY - this.canvasElement.offset().top) * this.cmPerPixel + this.originY * this.cmPerPixel;
+      this.mouseX = (event.pageX - this.canvasElement.offset().left) * this.cmPerPixel + this.originX * this.cmPerPixel;
+      this.mouseY = (event.pageY - this.canvasElement.offset().top) * this.cmPerPixel + this.originY * this.cmPerPixel;
 
       // update target (snapped position of actual mouse)
       if (this.mode == floorplannerModes.DRAW || (this.mode == floorplannerModes.MOVE && this.mouseDown)) {
