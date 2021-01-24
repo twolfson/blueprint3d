@@ -1,4 +1,4 @@
-module BP3D.Core {
+namespace BP3D.Core {
   /** Version information. */
   export class Version {
     /** The informal version. */

@@ -3,7 +3,7 @@
 /// <reference path="../core/utils.ts" />
 /// <reference path="../items/factory.ts" />
 
-module BP3D.Model {
+namespace BP3D.Model {
   /**
    * The Scene is a manager of Items and also links to a ThreeJS scene.
    */

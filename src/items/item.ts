@@ -3,7 +3,7 @@
 /// <reference path="../model/model.ts" />
 /// <reference path="metadata.ts" />
 
-module BP3D.Items {
+namespace BP3D.Items {
   /**
    * An Item is an abstract entity for all things placed in the scene,
    * e.g. at walls or on the floor.

@@ -4,7 +4,7 @@
 declare interface Window { floorplanner: any }
 
 
-module BP3D.Model {
+namespace BP3D.Model {
   export class TextLabel {
     public textDimensionsPx;
     public padding = 4 * Core.Configuration.data['cmPerPixel'];

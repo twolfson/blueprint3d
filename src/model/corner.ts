@@ -3,7 +3,7 @@
 /// <reference path="floorplan.ts" />
 /// <reference path="wall.ts" />
 
-module BP3D.Model {
+namespace BP3D.Model {
   /** */
   const cornerTolerance: number = 20;
 

@@ -12,7 +12,7 @@ var segseg = require('segseg')
 var Polygon = require('polygon')
 */
 
-module BP3D.Model {
+namespace BP3D.Model {
 
   /** Default texture to be used if nothing is provided. */
   const defaultRoomTexture = {

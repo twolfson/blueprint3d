@@ -6,7 +6,7 @@
 /// <reference path="corner.ts" />
 /// <reference path="half_edge.ts" />
 
-module BP3D.Model {
+namespace BP3D.Model {
   /** The default wall texture. */
   const defaultWallTexture = {
     url: "rooms/textures/wallmap.png",

@@ -1,10 +1,7 @@
 /// <reference path="model/model.ts" />
 /// <reference path="floorplanner/floorplanner.ts" />
 
-import { Model } from "./model/model";
-
-
-module BP3D {
+namespace BP3D {
   /** Startup options. */
   export interface Options {
     /** */
@@ -29,7 +26,7 @@ module BP3D {
   /** Blueprint3D core application. */
   export class Blueprint3d {
     
-    private model: Model;
+    private model: Model.Model;
 
     private three: any; // Three.Main;
 
