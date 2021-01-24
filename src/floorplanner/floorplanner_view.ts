@@ -296,6 +296,7 @@ module BP3D.Floorplanner {
     private drawTextLabel(label) {
       // Draw our box background
       var hover = (label === this.viewmodel.activeTextLabel);
+      var selected = (this.viewmodel.selectedTextLabels && this.viewmodel.selectedTextLabels.includes(label));
       this.setTextLabelStyles();
       var pixelsPerCm = Core.Configuration.data['pixelsPerCm'];
       this.drawRectangle(
@@ -305,9 +306,9 @@ module BP3D.Floorplanner {
         this.viewmodel.convertY(label.y) + label.getHeight() * pixelsPerCm,
         true, /* fill */
         label.background,
-        hover, /* stroke */
-        label.background,
-        textLabelHoverStroke);
+        hover || selected, /* stroke */
+        selected ? '#45E645' : label.background,
+        hover ? textLabelHoverStroke : 5);
 
       // Draw our text
       this.context.fillStyle = label.color;
