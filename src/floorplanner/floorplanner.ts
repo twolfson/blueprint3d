@@ -31,6 +31,7 @@ module BP3D.Floorplanner {
     // DEV: Contrasting to activeWall in that it persists focus
     //   and persists after overlay is gone (strange edge cases around `mouseleave`)
     public selectedWalls = null;
+    public selectedTextLabels = null;
 
     /** */
     public originX = 0;
@@ -184,10 +185,26 @@ module BP3D.Floorplanner {
       if (this.mode == floorplannerModes.MOVE) {
         // If we have a target
         if (this.activeCorner || this.activeWall || this.activeTextLabel) {
-          // If the target isn't in our selection, then remove our selection
-          // TODO: Add `textLabel` as part of this check
-          if (this.selectedWalls && !this.selectedWalls.includes(this.activeWall)) {
+          // DEV: Active targets are mutually exclusive -- we should only have at most 1 corner XOR 1 text label XOR 1 wall
+          // If we have a corner target, then remove our selection
+          if (this.activeCorner) {
             this.selectedWalls = null;
+            this.selectedTextLabels = null;
+          // Otherwise, if we have a text label target, then if it's not in our existing selection, remove our selection
+          } else if (this.activeTextLabel) {
+            if (this.selectedTextLabels && !this.selectedTextLabels.includes(this.activeTextLabel)) {
+              this.selectedWalls = null;
+              this.selectedTextLabels = null;
+            }
+          // Otherwise, if we have a wall target target, then if it's not in our existing selection, remove our selection
+          } else if (this.activeWall) {
+            if (this.selectedWalls && !this.selectedWalls.includes(this.activeWall)) {
+              this.selectedWalls = null;
+              this.selectedTextLabels = null;
+            }
+          // Otherwise, we missed an explicit case so error out
+          } else {
+            throw new Error('Target conditional not matched');
           }
         // Otherwise (no target), start a new overlay
         } else {
