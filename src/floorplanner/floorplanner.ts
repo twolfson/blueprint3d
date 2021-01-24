@@ -169,6 +169,18 @@ module BP3D.Floorplanner {
       this.lastX = this.rawMouseX;
       this.lastY = this.rawMouseY;
 
+      // drawing
+      if (this.mode == floorplannerModes.DRAW) {
+        var corner = this.floorplan.newCorner(this.targetX, this.targetY);
+        if (this.lastNode != null) {
+          this.floorplan.newWall(this.lastNode, corner);
+        }
+        if (corner.mergeWithIntersected() && this.lastNode != null) {
+          this.setMode(floorplannerModes.MOVE);
+        }
+        this.lastNode = corner;
+      }
+
       // delete
       if (this.mode == floorplannerModes.DELETE) {
         if (this.activeCorner) {
@@ -359,18 +371,6 @@ module BP3D.Floorplanner {
     /** */
     private mouseup() {
       this.mouseDown = false;
-
-      // drawing
-      if (this.mode == floorplannerModes.DRAW && !this.mouseMoved) {
-        var corner = this.floorplan.newCorner(this.targetX, this.targetY);
-        if (this.lastNode != null) {
-          this.floorplan.newWall(this.lastNode, corner);
-        }
-        if (corner.mergeWithIntersected() && this.lastNode != null) {
-          this.setMode(floorplannerModes.MOVE);
-        }
-        this.lastNode = corner;
-      }
 
       // dragging
       if (this.mode == floorplannerModes.MOVE) {
