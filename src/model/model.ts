@@ -3,7 +3,6 @@
 /// <reference path="floorplan.ts" />
 /// <reference path="scene.ts" />
 
-module BP3D.Model {
   /** 
    * A Model connects a Floorplan and a Scene. 
    */
@@ -107,4 +106,3 @@ module BP3D.Model {
       });
     }
   }
-}
