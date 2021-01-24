@@ -113,6 +113,20 @@ module BP3D.Floorplanner {
     }
 
     /** */
+    private somethingActiveAndNotInSelected(): boolean {
+      var model = this.viewmodel;
+      if (model.activeCorner) {
+        return true; // No selection possible for corners
+      } else if (model.activeTextLabel) {
+        return !model.selectedTextLabels.includes(model.activeTextLabel);
+      } else if (model.activeWall) {
+        return !model.selectedWalls.includes(model.activeWall);
+      } else {
+        return false; // Nothing was active
+      }
+    }
+
+    /** */
     private drawWallLabels(wall: Model.Wall) {
       // we'll just draw the shorter label... idk
       if (wall.backEdge && wall.frontEdge) {
@@ -140,7 +154,7 @@ module BP3D.Floorplanner {
         color = wallColorHover;
       } else if (selected) {
         // If there's an active wall outside of the multiselect, then show deselect
-        if (activeWall && !this.viewmodel.selectedWalls.includes(activeWall)) {
+        if (this.somethingActiveAndNotInSelected()) {
           color = deselectColor;
         // Otherwise, show normal hovercolor
         } else {
@@ -313,8 +327,7 @@ module BP3D.Floorplanner {
       if (selected) {
         // If there's an active wall outside of the multiselect, then show deselect
         var selectedStrokeStyle = label.background;
-        if ((this.viewmodel.activeCorner || this.viewmodel.activeTextLabel ||this.viewmodel.activeWall)
-            && !this.viewmodel.selectedTextLabels.includes(activeTextLabel)) {
+        if (this.somethingActiveAndNotInSelected()) {
           selectedStrokeStyle = label.background + '66'; // RGB -> RGBA
         }
         var strokeOffset = 2;
