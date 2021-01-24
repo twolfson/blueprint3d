@@ -282,6 +282,28 @@ module BP3D.Model {
       this.floorplan.update();
     }
 
+    // Copy/paste of `mergeWithIntersected` but noop
+    public willMergeWithIntersected(): boolean {
+      for (var i = 0; i < this.floorplan.getCorners().length; i++) {
+        var corner = this.floorplan.getCorners()[i];
+        if (this.distanceFromCorner(corner) < cornerTolerance && corner != this) {
+          return true;
+        }
+      }
+      for (var i = 0; i < this.floorplan.getWalls().length; i++) {
+        var wall = this.floorplan.getWalls()[i];
+        if (this.distanceFromWall(wall) < cornerTolerance && !this.isWallConnected(wall)) {
+          var intersection = Core.Utils.closestPointOnLine(this.x, this.y,
+            wall.getStart().x, wall.getStart().y,
+            wall.getEnd().x, wall.getEnd().y);
+          this.x = intersection.x;
+          this.y = intersection.y;
+          return true;
+        }
+      }
+      return false;
+    }
+
     public mergeWithIntersected(): boolean {
       //console.log('mergeWithIntersected for object: ' + this.type);
       // check corners

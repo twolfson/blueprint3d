@@ -2,6 +2,7 @@
 /// <reference path="../core/configuration.ts" />
 /// <reference path="../core/dimensioning.ts" />
 /// <reference path="../core/utils.ts" />
+/// <reference path="../model/corner.ts" />
 /// <reference path="../model/floorplan.ts" />
 /// <reference path="../model/half_edge.ts" />
 /// <reference path="../model/model.ts" />
@@ -261,13 +262,18 @@ module BP3D.Floorplanner {
 
     /** */
     private drawTarget(x: number, y: number, lastNode) {
-      this.drawCircle(
-        this.viewmodel.convertX(x),
-        this.viewmodel.convertY(y),
-        cornerRadiusHover,
-        cornerColorHover
-      );
+      // If we've started a line
+      var targetColor = cornerColorHover;
       if (this.viewmodel.lastNode) {
+        // If we're going to merge with a target, then change our color
+        var tmpCorner = new Model.Corner(this.floorplan, x, y, 'tmpCornerId');
+        tmpCorner.x = x;
+        tmpCorner.y = y;
+        if (tmpCorner.willMergeWithIntersected()) {
+          targetColor = '#00FF00';
+        }
+
+        // Draw our line + circle as per normal
         this.drawLine(
           this.viewmodel.convertX(lastNode.x),
           this.viewmodel.convertY(lastNode.y),
@@ -277,6 +283,13 @@ module BP3D.Floorplanner {
           wallColorHover
         );
       }
+      // Draw our line + circle as per normal
+      this.drawCircle(
+        this.viewmodel.convertX(x),
+        this.viewmodel.convertY(y),
+        cornerRadiusHover,
+        targetColor
+      );
     }
 
     /** */
