@@ -1,7 +1,7 @@
 // Load in our dependencies
-window.THREE = require('three');
-window.$ = require('jquery');
-void require('../../src/blueprint3d.ts');
+// window.THREE = require('three');
+// window.$ = require('jquery');
+// void require('../../src/blueprint3d.ts');
 
 /*
  * Floorplanner controls
