@@ -3,6 +3,8 @@
 /// <reference path="floorplan.ts" />
 /// <reference path="scene.ts" />
 
+console.log('hey');
+
 namespace BP3D.Model {
   /** 
    * A Model connects a Floorplan and a Scene. 

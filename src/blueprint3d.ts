@@ -1,6 +1,8 @@
 /// <reference path="model/model.ts" />
 /// <reference path="floorplanner/floorplanner.ts" />
 
+console.log('aaa');
+
 namespace BP3D {
   /** Startup options. */
   export interface Options {
