@@ -50,10 +50,6 @@ Backlog:
 - [ ] Add `destroy` cleanup logic (e.g. unbinding DOM listeners, possibly emptying callbacks (might be unnecessary))
 - [ ] Fix up quick yet inefficient decisions when adding multiselect (e.g. better iteration of multiple corners of walls, figuring out alternatives to selecting subsets (could use fixed length arrays as bitfields))
 - [ ] Implement loading/serialization for text labels
-- [ ] Implement draggable + selectable for text labels
-    - [ ] Hover selected shows deselect
-    - [x] Deselect on other selection
-    - [x] Move all items on drag
 
 ---
 
