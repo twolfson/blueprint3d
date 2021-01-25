@@ -46,7 +46,6 @@ module BP3D.Model {
     constructor(private floorplan: Floorplan, public corners: Corner[]) {
       this.updateWalls();
       this.updateInteriorCorners();
-      this.generatePlane();
     }
 
     private getUuid(): string {
@@ -76,24 +75,6 @@ module BP3D.Model {
       this.floorChangeCallbacks.fire();
     }
 
-    private generatePlane() {
-      var points = [];
-      this.interiorCorners.forEach((corner) => {
-        points.push(new THREE.Vector2(
-          corner.x,
-          corner.y));
-      });
-      var shape = new THREE.Shape(points);
-      var geometry = new THREE.ShapeGeometry(shape);
-      this.floorPlane = new THREE.Mesh(geometry,
-        new THREE.MeshBasicMaterial({
-          side: THREE.DoubleSide
-        }));
-      this.floorPlane.visible = false;
-      this.floorPlane.rotation.set(Math.PI / 2, 0, 0);
-      (<any>this.floorPlane).room = this; // js monkey patch
-    }
-
     private cycleIndex(index) {
       if (index < 0) {
         return index += this.corners.length;
@@ -106,7 +87,6 @@ module BP3D.Model {
       var edge = this.edgePointer;
       while (true) {
         this.interiorCorners.push(edge.interiorStart());
-        edge.generatePlane();
         if (edge.next === this.edgePointer) {
           break;
         } else {

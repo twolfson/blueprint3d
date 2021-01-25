@@ -89,43 +89,6 @@ module BP3D.Model {
       this.redrawCallbacks.fire();
     }
 
-    /** 
-     * this feels hacky, but need wall items
-     */
-    public generatePlane = function () {
-
-      function transformCorner(corner) {
-        return new THREE.Vector3(corner.x, 0, corner.y);
-      }
-
-      var v1 = transformCorner(this.interiorStart());
-      var v2 = transformCorner(this.interiorEnd());
-      var v3 = v2.clone();
-      v3.y = this.wall.height;
-      var v4 = v1.clone();
-      v4.y = this.wall.height;
-
-      var geometry = new THREE.Geometry();
-      geometry.vertices = [v1, v2, v3, v4];
-
-      geometry.faces.push(new THREE.Face3(0, 1, 2));
-      geometry.faces.push(new THREE.Face3(0, 2, 3));
-      geometry.computeFaceNormals();
-      geometry.computeBoundingBox();
-
-      this.plane = new THREE.Mesh(geometry,
-        new THREE.MeshBasicMaterial());
-      this.plane.visible = false;
-      this.plane.edge = this; // js monkey patch
-
-      this.computeTransforms(
-        this.interiorTransform, this.invInteriorTransform,
-        this.interiorStart(), this.interiorEnd());
-      this.computeTransforms(
-        this.exteriorTransform, this.invExteriorTransform,
-        this.exteriorStart(), this.exteriorEnd());
-    }
-
     public interiorDistance(): number {
       var start = this.interiorStart();
       var end = this.interiorEnd();

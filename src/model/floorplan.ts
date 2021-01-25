@@ -425,9 +425,7 @@ module BP3D.Model {
         if (!wall.backEdge && !wall.frontEdge) {
           wall.orphan = true;
           var back = new HalfEdge(null, wall, false);
-          back.generatePlane();
           var front = new HalfEdge(null, wall, true);
-          front.generatePlane();
           orphanWalls.push(wall);
         }
       });
