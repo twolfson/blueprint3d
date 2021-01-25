@@ -2,6 +2,7 @@ Changelog:
 
 All `git tag` prefixed with `twolfson` for isolation
 
+- twolfson-1.6.0 - Removed THREE as a dependency (removes 500kb)
 - twolfson-1.5.1 - Added back `postinstall` hook for build
 - twolfson-1.5.0 - Disabled origin resetting based on content
 - twolfson-1.4.1 - Fixed scroll bug (cursor position was higher when scrolled down)
