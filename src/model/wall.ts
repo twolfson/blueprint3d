@@ -2,7 +2,6 @@
 /// <reference path="../../lib/jquery.d.ts" />
 /// <reference path="../core/configuration.ts" />
 /// <reference path="../core/utils.ts" />
-/// <reference path="../items/item.ts" />
 /// <reference path="corner.ts" />
 /// <reference path="half_edge.ts" />
 
@@ -32,12 +31,6 @@ module BP3D.Model {
 
     /** */
     public orphan = false;
-
-    /** Items attached to this wall */
-    public items: Items.Item[] = [];
-
-    /** */
-    public onItems: Items.Item[] = [];
 
     /** The front-side texture. */
     public frontTexture = defaultWallTexture;

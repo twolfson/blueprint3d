@@ -18,9 +18,6 @@ module BP3D {
     
     /** */
     floorplannerElement?: string;
-
-    /** The texture directory. */
-    textureDir?: string;
   }
 
   /** Blueprint3D core application. */
@@ -36,7 +33,7 @@ module BP3D {
      * @param options The initialization options.
      */
     constructor(options: Options) {
-      this.model = new Model.Model(options.textureDir);
+      this.model = new Model.Model();
       this.floorplanner = new Floorplanner.Floorplanner(options.containerElement, options.floorplannerElement, this.model.floorplan);
     }
   }
