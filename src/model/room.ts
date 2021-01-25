@@ -31,9 +31,6 @@ module BP3D.Model {
     /** */
     private edgePointer = null;
 
-    /** floor plane for intersection testing */
-    public floorPlane: THREE.Mesh = null;
-
     /** */
     private customTexture = false;
 

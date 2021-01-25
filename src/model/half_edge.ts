@@ -24,21 +24,6 @@ module BP3D.Model {
     /** */
     public height: number;
 
-    /** used for intersection testing... not convinced this belongs here */
-    public plane: THREE.Mesh = null;
-
-    /** transform from world coords to wall planes (z=0) */
-    public interiorTransform = new THREE.Matrix4();
-
-    /** transform from world coords to wall planes (z=0) */
-    public invInteriorTransform = new THREE.Matrix4();
-
-    /** transform from world coords to wall planes (z=0) */
-    private exteriorTransform = new THREE.Matrix4();
-
-    /** transform from world coords to wall planes (z=0) */
-    private invExteriorTransform = new THREE.Matrix4();
-
     /** */
     public redrawCallbacks = $.Callbacks();
 
@@ -93,21 +78,6 @@ module BP3D.Model {
       var start = this.interiorStart();
       var end = this.interiorEnd();
       return Core.Utils.distance(start.x, start.y, end.x, end.y);
-    }
-
-    private computeTransforms(transform, invTransform, start, end) {
-
-      var v1 = start;
-      var v2 = end;
-
-      var angle = Core.Utils.angle(1, 0, v2.x - v1.x, v2.y - v1.y);
-
-      var tt = new THREE.Matrix4();
-      tt.makeTranslation(-v1.x, 0, -v1.y);
-      var tr = new THREE.Matrix4();
-      tr.makeRotationY(-angle);
-      transform.multiplyMatrices(tr, tt);
-      invTransform.getInverse(transform);
     }
 
     /** Gets the distance from specified point.
