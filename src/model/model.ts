@@ -36,10 +36,7 @@ module BP3D.Model {
       this.roomLoadingCallbacks.fire();
 
       var data = JSON.parse(json)
-      this.newRoom(
-        data.floorplan,
-        data.items
-      );
+      this.newRoom(data.floorplan);
 
       this.roomLoadedCallbacks.fire();
     }
@@ -54,7 +51,7 @@ module BP3D.Model {
       return JSON.stringify(room);
     }
 
-    private newRoom(floorplan: string, items) {
+    private newRoom(floorplan: string) {
       this.floorplan.loadFloorplan(floorplan);
     }
   }
