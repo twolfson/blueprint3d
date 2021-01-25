@@ -2,6 +2,7 @@ Changelog:
 
 All `git tag` prefixed with `twolfson` for isolation
 
+- twolfson-1.5.0 - Disabled origin resetting based on content
 - twolfson-1.4.1 - Fixed scroll bug (cursor position was higher when scrolled down)
 - twolfson-1.4.0 - Updated draw mode (removed auto-exit, added terminate color)
 - twolfson-1.3.0 - Added interactive support for text labels (draggable + multiselect)
