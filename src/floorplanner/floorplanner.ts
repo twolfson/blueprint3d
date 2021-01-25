@@ -433,11 +433,11 @@ module BP3D.Floorplanner {
     /** Sets the origin so that floorplan is centered */
     private resetOrigin() {
       throw new Error('`resetOrigin` disallowed as we removed panning');
-      var centerX = this.canvasElement.innerWidth() / 2.0;
-      var centerY = this.canvasElement.innerHeight() / 2.0;
-      var centerFloorplan = this.floorplan.getCenter();
-      this.originX = centerFloorplan.x * this.pixelsPerCm - centerX;
-      this.originY = centerFloorplan.z * this.pixelsPerCm - centerY;
+      // var centerX = this.canvasElement.innerWidth() / 2.0;
+      // var centerY = this.canvasElement.innerHeight() / 2.0;
+      // var centerFloorplan = this.floorplan.getCenter();
+      // this.originX = centerFloorplan.x * this.pixelsPerCm - centerX;
+      // this.originY = centerFloorplan.z * this.pixelsPerCm - centerY;
     }
 
     /** Convert from THREEjs coords to canvas coords. */

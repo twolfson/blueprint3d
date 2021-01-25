@@ -194,25 +194,25 @@ module BP3D.Floorplanner {
     /** */
     private drawEdgeLabel(edge: Model.HalfEdge) {
       return;
-      var pos = edge.interiorCenter();
-      var length = edge.interiorDistance();
-      if (length < 60) {
-        // dont draw labels on walls this short
-        return;
-      }
-      this.context.font = "normal 12px Arial";
-      this.context.fillStyle = "#000000";
-      this.context.textBaseline = "middle";
-      this.context.textAlign = "center";
-      this.context.strokeStyle = "#ffffff";
-      this.context.lineWidth = 4;
+      // var pos = edge.interiorCenter();
+      // var length = edge.interiorDistance();
+      // if (length < 60) {
+      //   // dont draw labels on walls this short
+      //   return;
+      // }
+      // this.context.font = "normal 12px Arial";
+      // this.context.fillStyle = "#000000";
+      // this.context.textBaseline = "middle";
+      // this.context.textAlign = "center";
+      // this.context.strokeStyle = "#ffffff";
+      // this.context.lineWidth = 4;
 
-      this.context.strokeText(Core.Dimensioning.cmToMeasure(length),
-        this.viewmodel.convertX(pos.x),
-        this.viewmodel.convertY(pos.y));
-      this.context.fillText(Core.Dimensioning.cmToMeasure(length),
-        this.viewmodel.convertX(pos.x),
-        this.viewmodel.convertY(pos.y));
+      // this.context.strokeText(Core.Dimensioning.cmToMeasure(length),
+      //   this.viewmodel.convertX(pos.x),
+      //   this.viewmodel.convertY(pos.y));
+      // this.context.fillText(Core.Dimensioning.cmToMeasure(length),
+      //   this.viewmodel.convertX(pos.x),
+      //   this.viewmodel.convertY(pos.y));
     }
 
     /** */
