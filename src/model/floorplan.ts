@@ -70,26 +70,6 @@ module BP3D.Model {
       return edges;
     }
 
-    // hack
-    public wallEdgePlanes(): THREE.Mesh[] {
-      var planes = []
-      this.walls.forEach((wall) => {
-        if (wall.frontEdge) {
-          planes.push(wall.frontEdge.plane);
-        }
-        if (wall.backEdge) {
-          planes.push(wall.backEdge.plane);
-        }
-      });
-      return planes;
-    }
-
-    private floorPlanes(): THREE.Mesh[] {
-      return Core.Utils.map(this.rooms, (room: Room) => {
-        return room.floorPlane;
-      });
-    }
-
     public fireOnNewWall(callback) {
       this.new_wall_callbacks.add(callback);
     }
@@ -423,14 +403,14 @@ module BP3D.Model {
       });
       var ret;
       if (xMin == Infinity || xMax == -Infinity || zMin == Infinity || zMax == -Infinity) {
-        ret = new THREE.Vector3();
+        ret = {x: 0, y: 0, z: 0};
       } else {
         if (center) {
           // center
-          ret = new THREE.Vector3((xMin + xMax) * 0.5, 0, (zMin + zMax) * 0.5);
+          ret = {x: (xMin + xMax) * 0.5, y: 0, z: (zMin + zMax) * 0.5};
         } else {
           // size
-          ret = new THREE.Vector3((xMax - xMin), 0, (zMax - zMin));
+          ret = {x: (xMax - xMin), y: 0, z: (zMax - zMin)};
         }
       }
       return ret;
