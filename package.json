@@ -4,9 +4,7 @@
   "description": "",
   "license": "(MIT OR Apache-2.0)",
   "main": "main.js",
-  "dependencies": {
-    "three": "^0.69.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "bootstrap": "^3.3.1",
     "bootstrap-tour": "^0.10.1",
@@ -22,7 +20,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "develop": "cp node_modules/three/three.min.js example/js/three.min.js && tsc --watch",
+    "develop": "tsc --watch",
     "postinstall": "npm run build"
   },
   "author": "",
