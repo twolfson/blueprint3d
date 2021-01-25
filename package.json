@@ -22,8 +22,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "develop": "tsc --watch",
-    "postinstall": "cp node_modules/three/three.min.js example/js/three.min.js"
+    "develop": "cp node_modules/three/three.min.js example/js/three.min.js && tsc --watch",
+    "postinstall": "npm run build"
   },
   "author": "",
   "private": true,
